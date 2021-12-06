@@ -24,12 +24,15 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <ListView
+        android:id="@+id/weightListview"
         android:layout_width="375dp"
         android:layout_height="283dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+
+        />
 
     <EditText
         android:id="@+id/editTxWeight"
@@ -48,7 +51,6 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="updateWeight"
         android:text="Lisää"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
