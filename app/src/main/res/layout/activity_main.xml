@@ -32,6 +32,7 @@
         android:id="@+id/bt_new_exersice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClickExercise"
         android:text="Lisää liikunta"
         app:layout_constraintBottom_toTopOf="@+id/bt_statistics"
         app:layout_constraintEnd_toEndOf="parent"

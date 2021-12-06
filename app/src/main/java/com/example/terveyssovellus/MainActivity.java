@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Weight.class);
         startActivity(intent);
     }
+
+    public void onClickExercise(View view) {
+        Intent intent = new Intent(this, Exercise.class);
+        startActivity(intent);
+    }
 }

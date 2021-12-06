@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">terveyssovellus</string>
+
+    <string-array name="liikuntamuodot">
+        <item>Juoksu</item>
+        <item>Uinti</item>
+        <item>Pyöräily</item>
+    </string-array>
+
 </resources>
