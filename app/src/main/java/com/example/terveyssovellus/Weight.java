@@ -1,7 +1,10 @@
 package com.example.terveyssovellus;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,7 +64,16 @@ public class Weight extends AppCompatActivity {
                 weight.add(s);
                 Collections.reverse(weight);
                 arrayadapter.notifyDataSetChanged();
+                SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = prefs.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(weight);
+                editor.putString("paino", json);
+                editor.apply();
+
             }
+
+
         });
     }
 
