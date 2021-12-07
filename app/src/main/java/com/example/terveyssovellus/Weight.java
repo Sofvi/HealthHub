@@ -45,6 +45,7 @@ public class Weight extends AppCompatActivity {
 
         String jsonText = prefs.getString("paino", null);
 
+
         et = findViewById(R.id.editTxWeight);
         bt = findViewById(R.id.button);
         lv = findViewById(R.id.weightListview);
@@ -56,11 +57,25 @@ public class Weight extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 weight);
         lv.setAdapter(arrayadapter);
+
         if (prefs.getString("paino", null)!=null) {
             //    String[] text = gson.fromJson(jsonText, String[].class);
             //  String str = text.toString();
-            weight.add(jsonText);
-            Log.d("yeet", jsonText);}
+            String yett= jsonText.replace("\\", "");
+            jsonText= yett.replace("[","");
+            yett = jsonText.replace("\"","");
+            jsonText= yett.replace("]","");
+
+            String[] parsed = jsonText.split(",");
+
+            for (int i=0;i<parsed.length;i++) {
+
+                weight.add(parsed[i]);
+
+            }
+            Log.d("yeet", jsonText);
+        }
+
         onClick();
 
     }
@@ -73,7 +88,7 @@ public class Weight extends AppCompatActivity {
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-                String s = currentDate + ", Paino: " + et.getText().toString() + " kg";
+                String s = currentDate + " Paino: " + et.getText().toString() + " kg";
                 weight.add(s);
                 Collections.reverse(weight);
                 arrayadapter.notifyDataSetChanged();
@@ -83,7 +98,6 @@ public class Weight extends AppCompatActivity {
                 String json = gson.toJson(weight);
                 editor.putString("paino", json);
                 editor.apply();
-
             }
 
 
