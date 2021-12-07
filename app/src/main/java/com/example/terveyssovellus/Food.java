@@ -12,9 +12,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class Food extends AppCompatActivity {
 
     private int foodCalories = 0;
+    Calendar calendar = Calendar.getInstance();
+    String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +27,7 @@ public class Food extends AppCompatActivity {
         setContentView(R.layout.activity_food);
 
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-        foodCalories = prefs.getInt("ruokakalorit",
+        foodCalories = prefs.getInt(currentDateKey,
                 0);
         TextView textView = findViewById(R.id.total_food_calories);
         textView.setText(String.valueOf(foodCalories));
@@ -49,7 +54,7 @@ public class Food extends AppCompatActivity {
 
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("ruokakalorit", foodCalories);
+        editor.putInt(currentDateKey, foodCalories);
         editor.commit();
 
         ProgressBar progressBar = findViewById(R.id.food_progressBar);
