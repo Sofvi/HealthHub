@@ -11,112 +11,123 @@
         android:id="@+id/bt_new_food"
         android:layout_width="275dp"
         android:layout_height="45dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/oval_backround"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-smallcaps"
         android:onClick="onClickFood"
         android:text="@string/lis_ruoka"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/bt_new_weight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/bt_new_weight"
         android:layout_width="275dp"
         android:layout_height="45dp"
+        android:layout_marginBottom="160dp"
         android:background="@drawable/oval_backround"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-smallcaps"
         android:onClick="onClickWeight"
         android:text="@string/lis_paino"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_new_food"
-        app:layout_constraintVertical_bias="0.627"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/bt_new_exercise"
         android:layout_width="275dp"
         android:layout_height="45dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/oval_backround"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-smallcaps"
         android:onClick="onClickExercise"
         android:text="@string/lis_liikunta"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_new_food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="208dp"
+        android:layout_height="58dp"
+        android:fontFamily="@font/adamina"
+        android:text="@string/health_hub"
+        android:textAlignment="center"
+        android:textColor="#070707"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.902" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="259dp"
+        android:layout_height="29dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/sinun_hyvinvointisi_tueksi"
+        android:textAlignment="center"
+        android:textColor="#070707"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_statistics"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.386" />
+
+    <Button
+        android:id="@+id/bt_settings"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:background="@drawable/oval_backround"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="onClickSettings"
+        android:text="@string/omat_tiedot"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/bt_statistics"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.277"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.771" />
 
     <Button
         android:id="@+id/bt_statistics"
         android:layout_width="275dp"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:background="@drawable/oval_backround"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="@string/seuranta"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.281"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374"
         tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/guideline10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="67dp" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="208dp"
-        android:layout_height="58dp"
-        android:text="@string/health_hub"
-        android:textAlignment="center"
-        android:textColor="#070707"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_new_food"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="199dp"
-        android:layout_height="28dp"
-        android:text="@string/sinun_hyvinvointisi_tueksi"
-        android:textAlignment="center"
-        android:textColor="#070707"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_new_food"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/bt_settings"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickSettings"
-        android:text="omat tiedot"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_statistics" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="67dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,12 @@
     <string name="lis_uusi_paino">Lisää uusi paino</string>
     <string name="health_hub">Health Hub</string>
     <string name="sinun_hyvinvointisi_tueksi">- Sinun hyvinvointisi tueksi -</string>
+    <string name="omat_tiedot">omat tiedot</string>
+    <string name="p_iv_kohtaiset_tavoitteet">Päiväkohtaiset tavoitteet</string>
+    <string name="paino">Paino</string>
+    <string name="pituus">Pituus</string>
+    <string name="kaloritavoite">Kaloritavoite</string>
+    <string name="poltetut_kalorit">Poltetut kalorit</string>
 
     <string-array name="liikuntamuodot">
         <item>Juoksu</item>
