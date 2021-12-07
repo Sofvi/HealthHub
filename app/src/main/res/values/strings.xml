@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">terveyssovellus</string>
+    <string name="app_name"></string>
     <string name="lis_ruoka">Lisää ruoka</string>
     <string name="lis_paino">Lisää paino</string>
     <string name="lis_liikunta">Lisää liikunta</string>
