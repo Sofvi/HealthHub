@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -37,17 +38,29 @@ public class Weight extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight);
 
+        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+        Gson gson = new Gson();
+
+
+
+        String jsonText = prefs.getString("paino", null);
+
         et = findViewById(R.id.editTxWeight);
         bt = findViewById(R.id.button);
         lv = findViewById(R.id.weightListview);
 
         weight = new ArrayList<String>();
+
         arrayadapter = new ArrayAdapter<String>(
                 Weight.this,
                 android.R.layout.simple_list_item_1,
                 weight);
         lv.setAdapter(arrayadapter);
-
+        if (prefs.getString("paino", null)!=null) {
+            //    String[] text = gson.fromJson(jsonText, String[].class);
+            //  String str = text.toString();
+            weight.add(jsonText);
+            Log.d("yeet", jsonText);}
         onClick();
 
     }
