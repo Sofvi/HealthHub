@@ -8,46 +8,66 @@
 
     <Button
         android:id="@+id/bt_new_food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="82dp"
+        android:backgroundTint="#274E29"
+        android:fontFamily="sans-serif"
         android:onClick="onClickFood"
-        android:text="Lisää ruoka"
+        android:text="@string/lis_ruoka"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.464" />
 
     <Button
         android:id="@+id/bt_new_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="82dp"
+        android:backgroundTint="#274E29"
+        android:fontFamily="sans-serif"
         android:onClick="onClickWeight"
-        android:text="Lisää paino"
+        android:text="@string/lis_paino"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_new_food" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_new_food"
+        app:layout_constraintVertical_bias="0.842" />
 
     <Button
-        android:id="@+id/bt_new_exersice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/bt_new_exercise"
+        android:layout_width="200dp"
+        android:layout_height="82dp"
+        android:backgroundTint="#274E29"
+        android:fontFamily="sans-serif"
         android:onClick="onClickExercise"
-        android:text="Lisää liikunta"
+        android:text="@string/lis_liikunta"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/bt_statistics"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.791" />
 
     <Button
         android:id="@+id/bt_statistics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Seuranta"
+        android:layout_width="200dp"
+        android:layout_height="82dp"
+        android:backgroundTint="#274E29"
+        android:fontFamily="sans-serif"
+        android:text="@string/seuranta"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.628" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

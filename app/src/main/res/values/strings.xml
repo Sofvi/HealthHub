@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">terveyssovellus</string>
+    <string name="lis_ruoka">Lisää ruoka</string>
+    <string name="lis_paino">Lisää paino</string>
+    <string name="lis_liikunta">Lisää liikunta</string>
+    <string name="seuranta">Seuranta</string>
+    <string name="kalorilaskuri">Kalorilaskuri</string>
+    <string name="lis">Lisää</string>
+    <string name="sy_t_ruuan_kalorit">Syötä ruuan kalorit</string>
+    <string name="kalorit_yhteens">Kalorit yhteensä</string>
+    <string name="_0">0</string>
+    <string name="lis">Lisää</string>
+    <string name="lis_uusi_paino">Lisää uusi paino</string>
 
     <string-array name="liikuntamuodot">
         <item>Juoksu</item>
