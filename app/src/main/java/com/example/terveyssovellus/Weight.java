@@ -89,6 +89,9 @@ public class Weight extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
                 String s = currentDate + " Paino: " + et.getText().toString() + " kg";
+                if(s.contains(",")){
+                    s.replace(",",".");
+                }
                 weight.add(s);
                 Collections.reverse(weight);
                 arrayadapter.notifyDataSetChanged();
