@@ -10,6 +10,8 @@
     <string name="kalorit_yhteens">Kalorit yhteensä</string>
     <string name="_0">0</string>
     <string name="lis_uusi_paino">Lisää uusi paino</string>
+    <string name="health_hub">Health Hub</string>
+    <string name="sinun_hyvinvointisi_tueksi">- Sinun hyvinvointisi tueksi -</string>
 
     <string-array name="liikuntamuodot">
         <item>Juoksu</item>
