@@ -18,6 +18,7 @@
     <string name="pituus">Pituus</string>
     <string name="kaloritavoite">Kaloritavoite</string>
     <string name="poltetut_kalorit">Poltetut kalorit</string>
+    <string name="lis_liikuntasuoritus">lisää liikuntasuoritus</string>
 
     <string-array name="liikuntamuodot">
         <item>Juoksu</item>
