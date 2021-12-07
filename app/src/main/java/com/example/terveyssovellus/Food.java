@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,10 @@ public class Food extends AppCompatActivity {
                 0);
         TextView textView2 = findViewById(R.id.food_calories_goal);
         textView2.setText(String.valueOf(goal_calories));
+
+        ProgressBar progressBar = findViewById(R.id.food_progressBar);
+        progressBar.setMax(goal_calories);
+        progressBar.setProgress(foodCalories);
     }
 
     public void updateFoodCalories(View view){
@@ -46,6 +51,9 @@ public class Food extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("ruokakalorit", foodCalories);
         editor.commit();
+
+        ProgressBar progressBar = findViewById(R.id.food_progressBar);
+        progressBar.setProgress(foodCalories);
     }
 
 
