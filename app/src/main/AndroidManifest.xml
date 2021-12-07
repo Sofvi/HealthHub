@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Terveyssovellus">
         <activity
+            android:name=".UserSettings"
+            android:exported="false" />
+        <activity
             android:name=".Exercise"
             android:exported="false" />
         <activity

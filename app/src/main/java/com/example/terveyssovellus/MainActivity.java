@@ -29,4 +29,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Exercise.class);
         startActivity(intent);
     }
+
+    public void onClickSettings(View view) {
+        Intent intent = new Intent(this, UserSettings.class);
+        startActivity(intent);
+    }
 }
