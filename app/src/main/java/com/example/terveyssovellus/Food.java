@@ -25,6 +25,12 @@ public class Food extends AppCompatActivity {
                 0);
         TextView textView = findViewById(R.id.total_food_calories);
         textView.setText(String.valueOf(foodCalories));
+
+        SharedPreferences prefs2 = getDefaultSharedPreferences(getApplicationContext());
+        int goal_calories = prefs2.getInt("user_food_goal",
+                0);
+        TextView textView2 = findViewById(R.id.food_calories_goal);
+        textView2.setText(String.valueOf(goal_calories));
     }
 
     public void updateFoodCalories(View view){

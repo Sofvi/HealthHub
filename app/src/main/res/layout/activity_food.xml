@@ -96,7 +96,7 @@
 
     <TextView
         android:id="@+id/total_food_calories"
-        android:layout_width="60dp"
+        android:layout_width="match_parent"
         android:layout_height="63dp"
         android:text="@string/_0"
         android:textAlignment="center"
@@ -108,4 +108,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.246" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Päivittäinen tavoite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_food_calories" />
+
+    <TextView
+        android:id="@+id/food_calories_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ei asetettu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 </androidx.constraintlayout.widget.ConstraintLayout>
