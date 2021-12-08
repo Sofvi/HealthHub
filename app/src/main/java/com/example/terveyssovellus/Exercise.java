@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -20,14 +21,14 @@ import java.util.Calendar;
 import java.util.Collections;
 
 public class Exercise extends AppCompatActivity {
-    Button esub;
-
+    Button bt;
+    String sel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        bt = findViewById(R.id.esub);
         Spinner liikunnatDropdown = (Spinner) findViewById(R.id.spinnerExercises);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -37,32 +38,37 @@ public class Exercise extends AppCompatActivity {
 
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         liikunnatDropdown.setAdapter(arrayAdapter);
+        liikunnatDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                 sel = parent.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
-   /* public void onClick() {
-        esub.setOnClickListener(new View.OnClickListener() {
+    public void onClick() {
+        bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-                String s = currentDate + " Paino: " + et.getText().toString() + " kg";
-                if(s.contains(",")){
-                    s = s.replace(",",".");
-                    Log.d("yeet2", s);
-                }
-                weight.add(s);
-                Collections.reverse(weight);
-                arrayadapter.notifyDataSetChanged();
+                String s = currentDate + " liikuntamuoto " + sel;
+
                 SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = prefs.edit();
                 Gson gson = new Gson();
-                String json = gson.toJson(weight);
-                editor.putString("paino", json);
+                String json = gson.toJson(s);
+                editor.putString("e "+currentDate, json);
                 editor.apply();
             }
 
 
         });
     }
-    */
+
     
 }
