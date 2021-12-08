@@ -28,7 +28,7 @@
         android:layout_marginStart="37dp"
         android:layout_marginTop="140dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/pituus"
+        android:text="Pituus (cm)"
         android:textColor="#070707"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/et_height"
@@ -38,11 +38,11 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="55dp"
+        android:layout_width="100dp"
         android:layout_height="29dp"
         android:layout_marginStart="41dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/paino"
+        android:text="Paino (kg)"
         android:textAlignment="center"
         android:textColor="#070707"
         android:textSize="20sp"
