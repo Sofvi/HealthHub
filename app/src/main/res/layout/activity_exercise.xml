@@ -40,17 +40,6 @@
         app:layout_constraintVertical_bias="0.189"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="277dp"
-        android:layout_height="247dp"
-        android:layout_marginBottom="44dp"
-        android:contentDescription="@string/todo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/man3" />
-
     <Button
         android:id="@+id/esub"
         android:layout_width="104dp"
@@ -64,5 +53,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.338" />
+
+    <ListView
+        android:id="@+id/exerciseList"
+        android:layout_width="375dp"
+        android:layout_height="283dp"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
