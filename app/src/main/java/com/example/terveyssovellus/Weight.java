@@ -90,7 +90,8 @@ public class Weight extends AppCompatActivity {
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
                 String s = currentDate + " Paino: " + et.getText().toString() + " kg";
                 if(s.contains(",")){
-                    s.replace(",",".");
+                   s = s.replace(",",".");
+                    Log.d("yeet2", s);
                 }
                 weight.add(s);
                 Collections.reverse(weight);
