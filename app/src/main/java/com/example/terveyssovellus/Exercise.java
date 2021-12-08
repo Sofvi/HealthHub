@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -21,14 +22,14 @@ import java.util.Calendar;
 import java.util.Collections;
 
 public class Exercise extends AppCompatActivity {
-    Button bt;
+    Button nappi;
     String sel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        bt = findViewById(R.id.esub);
+        nappi = findViewById(R.id.esub);
         Spinner liikunnatDropdown = (Spinner) findViewById(R.id.spinnerExercises);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -49,9 +50,11 @@ public class Exercise extends AppCompatActivity {
 
             }
         });
+
+        onClick();
     }
     public void onClick() {
-        bt.setOnClickListener(new View.OnClickListener() {
+        nappi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
@@ -64,6 +67,8 @@ public class Exercise extends AppCompatActivity {
                 String json = gson.toJson(s);
                 editor.putString("e "+currentDate, json);
                 editor.apply();
+
+                Toast.makeText(getApplicationContext(),"Nappulaa(eiselapsi) painettu.", Toast.LENGTH_SHORT).show();
             }
 
 

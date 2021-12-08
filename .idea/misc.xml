@@ -3,17 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Tuomo/AndroidStudioProjects/healthub/app/src/main/res/layout/activity_exercise.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Tuomo/AndroidStudioProjects/healthub/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Tuomo/AndroidStudioProjects/healthub/app/src/main/res/layout/activity_user_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Tuomo/AndroidStudioProjects/healthub/app/src/main/res/layout/activity_weight.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Tuomo/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_exercise.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Tuomo/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_food.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Tuomo/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Tuomo/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_weight.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/drawable/main_page.xml" value="0.13055555555555556" />
         <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/drawable/oval_backround.xml" value="0.2703125" />
-        <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_exercise.xml" value="0.4" />
+        <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_exercise.xml" value="0.264" />
         <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_food.xml" value="0.264" />
         <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_user_settings.xml" value="0.264" />
-        <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_weight.xml" value="0.4" />
+        <entry key="..\:/Users/laiti/AndroidStudioProjects/terveyssovellus/app/src/main/res/layout/activity_weight.xml" value="0.264" />
       </map>
     </option>
   </component>
