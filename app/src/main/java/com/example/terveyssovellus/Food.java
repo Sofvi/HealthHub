@@ -25,6 +25,7 @@ public class Food extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         foodCalories = prefs.getInt(currentDateKey,

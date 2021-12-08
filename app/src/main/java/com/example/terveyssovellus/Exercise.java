@@ -26,6 +26,7 @@ public class Exercise extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Spinner liikunnatDropdown = (Spinner) findViewById(R.id.spinnerExercises);
 

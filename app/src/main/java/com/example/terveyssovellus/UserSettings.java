@@ -18,6 +18,7 @@ public class UserSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         EditText addCourseText = findViewById(R.id.et_food_goal);
         addCourseText.setOnKeyListener(new View.OnKeyListener()

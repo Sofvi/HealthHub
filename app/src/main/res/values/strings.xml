@@ -5,7 +5,7 @@
     <string name="lis_liikunta">Lisää liikunta</string>
     <string name="seuranta">Seuranta</string>
     <string name="kalorilaskuri">Kalorilaskuri</string>
-    <string name="lis">Lisää</string>
+    <string name="lisaa">Lisää</string>
     <string name="sy_t_ruuan_kalorit">Syötä ruuan kalorit</string>
     <string name="kalorit_yhteens">Kalorit yhteensä</string>
     <string name="_0">0</string>
@@ -19,6 +19,9 @@
     <string name="kaloritavoite">Kaloritavoite</string>
     <string name="poltetut_kalorit">Poltetut kalorit</string>
     <string name="lis_liikuntasuoritus">lisää liikuntasuoritus</string>
+    <string name="lis_uusi_liikuntasuoritus">Lisää uusi liikuntasuoritus</string>
+    <string name="lis">Lisää</string>
+    <string name="todo">TODO</string>
 
     <string-array name="liikuntamuodot">
         <item>Juoksu</item>

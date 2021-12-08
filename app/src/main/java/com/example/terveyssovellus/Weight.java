@@ -37,6 +37,7 @@ public class Weight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();

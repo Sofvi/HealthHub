@@ -19,7 +19,7 @@
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Lisää uusi liikuntasuoritus"
+        android:text="@string/lis_uusi_liikuntasuoritus"
         android:textAlignment="center"
         android:textColor="#050505"
         android:textSize="20sp"
@@ -45,7 +45,8 @@
         android:id="@+id/imageView3"
         android:layout_width="277dp"
         android:layout_height="247dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="44dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,14 +54,17 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_width="104dp"
+        android:layout_height="57dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="onClick"
+        android:text="@string/lis"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.399" />
+        app:layout_constraintVertical_bias="0.338" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
