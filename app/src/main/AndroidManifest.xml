@@ -10,21 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Terveyssovellus">
         <activity
-            android:name=".UserSettings"
-            android:parentActivityName=".MainActivity"
+            android:name=".Statistics"
             android:exported="false" />
+        <activity
+            android:name=".UserSettings"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Exercise"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Weight"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Food"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

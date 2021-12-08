@@ -88,6 +88,7 @@
         android:layout_height="50dp"
         android:background="@drawable/oval_backround"
         android:fontFamily="sans-serif-smallcaps"
+        android:onClick="onClickStatistics"
         android:text="@string/seuranta"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
