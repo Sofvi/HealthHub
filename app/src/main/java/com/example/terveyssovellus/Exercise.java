@@ -54,6 +54,30 @@ public class Exercise extends AppCompatActivity {
                 Exercise.this,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.liikuntamuodot));
+        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+        Gson gson = new Gson();
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+        String jsonText = prefs.getString("liikunta", null);
+
+        if (prefs.getString("liikunta", null)!=null) {
+            Log.d("yeet2", jsonText);
+            //    String[] text = gson.fromJson(jsonText, String[].class);
+            //  String str = text.toString();
+            String yett= jsonText.replace("\\", "");
+            jsonText= yett.replace("[","");
+            yett = jsonText.replace("\"","");
+            jsonText= yett.replace("]","");
+
+            String[] parsed = jsonText.split(",");
+
+            for (int i=0;i<parsed.length;i++) {
+
+                exer.add(parsed[i]);
+
+            }
+            Log.d("yeet2", jsonText);
+        }
 
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         liikunnatDropdown.setAdapter(arrayAdapter);
@@ -85,6 +109,7 @@ public class Exercise extends AppCompatActivity {
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+
                 String s;
                 if(sel.equals("Muu")){
                      s = currentDate + " liikuntamuoto Muu jossa poltetut kalorit " + et.getText().toString();
@@ -101,7 +126,7 @@ public class Exercise extends AppCompatActivity {
                 SharedPreferences.Editor editor = prefs.edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(s);
-                editor.putString("e "+currentDate, json);
+                editor.putString("liikunta", json);
                 editor.apply();
 
                 Toast.makeText(getApplicationContext(),"Nappulaa(eiselapsi) painettu.", Toast.LENGTH_SHORT).show();
