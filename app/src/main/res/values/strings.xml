@@ -27,6 +27,7 @@
         <item>Juoksu</item>
         <item>Uinti</item>
         <item>Pyöräily</item>
+        <item>Muu</item>
     </string-array>
 
 </resources>

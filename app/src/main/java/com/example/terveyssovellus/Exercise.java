@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -26,23 +27,26 @@ import java.util.Collections;
 public class Exercise extends AppCompatActivity {
     Button nappi;
     String sel;
+    EditText et;
     ListView elv;
     ArrayList<String> exer;
     ArrayAdapter<String> arrayadapter;
+    ArrayAdapter<String> arrayadapter2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         nappi = findViewById(R.id.esub);
         elv = findViewById(R.id.exerciseList);
         exer = new ArrayList<String>();
-
-        arrayadapter = new ArrayAdapter<String>(
+        et = findViewById(R.id.editTxexercise);
+        arrayadapter2 = new ArrayAdapter<String>(
                 Exercise.this,
                 android.R.layout.simple_list_item_1,
                 exer);
-        elv.setAdapter(arrayadapter);
+        elv.setAdapter(arrayadapter2);
 
         Spinner liikunnatDropdown = (Spinner) findViewById(R.id.spinnerExercises);
 
@@ -57,6 +61,14 @@ public class Exercise extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                  sel = parent.getSelectedItem().toString();
+                Log.d("yeet", sel);
+                 if(sel.equals("Muu")){
+                    et.setVisibility(View.VISIBLE);
+                 }
+                 else{
+                     et.setVisibility(View.INVISIBLE);
+                 }
+
             }
 
             @Override
@@ -73,9 +85,18 @@ public class Exercise extends AppCompatActivity {
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-                String s = currentDate + " liikuntamuoto " + sel;
+                String s;
+                if(sel.equals("Muu")){
+                     s = currentDate + " liikuntamuoto Muu jossa poltetut kalorit " + et.getText().toString();
+                }
+                else{
+                 s = currentDate + " liikuntamuoto " + sel;}
+
                 Log.d("yeet", s);
                 exer.add(s);
+                String debug = exer.toString();
+                arrayadapter2.notifyDataSetChanged();
+                Log.d("yeet", debug );
                 SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = prefs.edit();
                 Gson gson = new Gson();

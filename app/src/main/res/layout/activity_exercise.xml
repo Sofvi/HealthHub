@@ -54,6 +54,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.338" />
 
+    <EditText
+        android:id="@+id/editTxexercise"
+        android:layout_width="210dp"
+        android:layout_height="68dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="#090909"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.327" />
+
     <ListView
         android:id="@+id/exerciseList"
         android:layout_width="375dp"
