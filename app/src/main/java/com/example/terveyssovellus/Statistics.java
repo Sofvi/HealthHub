@@ -11,11 +11,16 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.BarLineChartBase;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -35,7 +40,57 @@ public class Statistics extends AppCompatActivity {
 
         updateBMI();
         updateFoodChart();
+        updateWeightChart();
 
+
+    }
+
+    private void updateWeightChart(){
+
+
+        ArrayList<Entry> painot = new ArrayList<Entry>();
+/*      painot.add(new Entry(0,20));
+        painot.add(new Entry(1,50));
+        painot.add(new Entry(2,10));
+        painot.add(new Entry(3,30));
+*/
+        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+        String painoString = prefs.getString("paino",
+                "0");
+
+
+        for (int i = 0; i < 10; i++) {
+
+            String s1 = painoString.substring(painoString.indexOf(":") + 1); //thx to ItamarG3 from stackoverflow
+            painoString = s1;
+            String paino = s1.split(" kg")[0];
+
+
+            Log.d("ZZZZ", "updateWeightChart: " + i + paino);
+
+
+
+
+            painot.add(new BarEntry(i, Float.parseFloat(paino)));
+
+        }
+
+
+
+        LineChart chart = findViewById(R.id.paino_linechart);
+        LineDataSet lineDataSet1= new LineDataSet(painot, "Paino");
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        dataSets.add(lineDataSet1);
+        chart.getDescription().setEnabled(false);
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setGranularity(1f); // only intervals of 1 day
+        xAxis.setLabelCount(7);
+
+
+        LineData data = new LineData(dataSets);
+        chart.setData(data);
 
     }
 
@@ -44,9 +99,7 @@ public class Statistics extends AppCompatActivity {
         String paino = prefs.getString("paino",
                 "0");
         String s1 = paino.substring(paino.indexOf(":") + 1); //thx to ItamarG3 from stackoverflow
-        paino = s1.replace(" kg", "");
-        s1 = paino.replace("\"]", "");
-        paino = s1.split("\"")[0]; // thx to assylias from stackoverflow
+        paino = s1.split(" kg")[0];
 
         weight = Double.parseDouble(paino);
 
