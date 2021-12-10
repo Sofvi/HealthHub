@@ -1,5 +1,6 @@
 package com.example.terveyssovellus;
 
+import static android.graphics.Color.rgb;
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -45,15 +47,20 @@ public class Statistics extends AppCompatActivity {
 
     }
 
-    private void updateWeightChart(){
+    private void updateWeightChart() {
 
 
         ArrayList<Entry> painot = new ArrayList<Entry>();
-/*      painot.add(new Entry(0,20));
-        painot.add(new Entry(1,50));
-        painot.add(new Entry(2,10));
-        painot.add(new Entry(3,30));
+/*      painot.add(new Entry(9,20));
+        painot.add(new Entry(8,50));
+        painot.add(new Entry(7,10));
+        painot.add(new Entry(4,30));
+        painot.add(new Entry(5,50));
+        painot.add(new Entry(6,10));
+        painot.add(new Entry(7,30));
 */
+
+
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         String painoString = prefs.getString("paino",
                 "0");
@@ -65,31 +72,29 @@ public class Statistics extends AppCompatActivity {
             painoString = s1;
             String paino = s1.split(" kg")[0];
 
-
             Log.d("ZZZZ", "updateWeightChart: " + i + paino);
-
-
-
-
             painot.add(new BarEntry(i, Float.parseFloat(paino)));
-
         }
 
 
-
         LineChart chart = findViewById(R.id.paino_linechart);
-        LineDataSet lineDataSet1= new LineDataSet(painot, "Paino");
+        LineDataSet lineDataSet1 = new LineDataSet(painot, "Paino");
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(lineDataSet1);
         chart.getDescription().setEnabled(false);
+
+        ValueFormatter xAxisFormatter = new DayAxisValueFormatter(chart);
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f); // only intervals of 1 day
         xAxis.setLabelCount(7);
+        xAxis.setValueFormatter(xAxisFormatter);
 
 
         LineData data = new LineData(dataSets);
+        lineDataSet1.setColor(rgb(39, 78, 41));
+
         chart.setData(data);
 
     }
@@ -126,7 +131,7 @@ public class Statistics extends AppCompatActivity {
 
             Calendar calendar = Calendar.getInstance();
 
-            calendar.add(Calendar.DATE, -7+i);
+            calendar.add(Calendar.DATE, -7 + i);
             String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());
 
             SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
@@ -138,17 +143,9 @@ public class Statistics extends AppCompatActivity {
 
         }
 
-
-/*        entries.add(new BarEntry(2, 1));
-        entries.add(new BarEntry(3, 2));
-        entries.add(new BarEntry(4, 3));
-        entries.add(new BarEntry(5, 4));
-        entries.add(new BarEntry(6, 5));
-        entries.add(new BarEntry(7, 6));
-*/
-
         BarDataSet dataSet = new BarDataSet(entries, "Kaloreita syöty");
         BarData data = new BarData(dataSet);
+        dataSet.setColor(rgb(39, 78, 41));
 
         ValueFormatter xAxisFormatter = new DayAxisValueFormatter(chart);
         XAxis xAxis = chart.getXAxis();
@@ -162,7 +159,6 @@ public class Statistics extends AppCompatActivity {
         chart.invalidate();
 
     }
-
 
 
     public class DayAxisValueFormatter extends ValueFormatter {

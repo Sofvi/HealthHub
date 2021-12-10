@@ -11,7 +11,7 @@
         android:layout_width="188dp"
         android:layout_height="49dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/lis_uusi_paino"
+        android:text="Lisää uusi paino (kg)"
         android:textAlignment="center"
         android:textColor="#050505"
         android:textSize="20sp"

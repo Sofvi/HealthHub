@@ -43,7 +43,6 @@ public class Weight extends AppCompatActivity {
         Gson gson = new Gson();
 
 
-
         String jsonText = prefs.getString("paino", null);
 
 
@@ -51,31 +50,34 @@ public class Weight extends AppCompatActivity {
         bt = findViewById(R.id.button);
         lv = findViewById(R.id.weightListview);
 
-        weight = new ArrayList<String>();
 
+
+        weight = new ArrayList<String>();
         arrayadapter = new ArrayAdapter<String>(
                 Weight.this,
                 android.R.layout.simple_list_item_1,
                 weight);
         lv.setAdapter(arrayadapter);
 
-        if (prefs.getString("paino", null)!=null) {
+        if (prefs.getString("paino", null) != null) {
             //    String[] text = gson.fromJson(jsonText, String[].class);
             //  String str = text.toString();
-            String yett= jsonText.replace("\\", "");
-            jsonText= yett.replace("[","");
-            yett = jsonText.replace("\"","");
-            jsonText= yett.replace("]","");
+            String yett = jsonText.replace("\\", "");
+            jsonText = yett.replace("[", "");
+            yett = jsonText.replace("\"", "");
+            jsonText = yett.replace("]", "");
 
             String[] parsed = jsonText.split(",");
 
-            for (int i=0;i<parsed.length;i++) {
+            for (int i = 0; i < parsed.length; i++) {
 
                 weight.add(parsed[i]);
 
             }
             Log.d("yeet", jsonText);
         }
+
+        Log.d("ZZZZ", "onCreate String: " + weight);
 
         onClick();
 
@@ -87,13 +89,18 @@ public class Weight extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                Collections.reverse(weight);
+
                 Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
                 String s = currentDate + " Paino: " + et.getText().toString() + " kg";
-                if(s.contains(",")){
-                   s = s.replace(",",".");
+                if (s.contains(",")) {
+                    s = s.replace(",", ".");
                     Log.d("yeet2", s);
                 }
+
                 weight.add(s);
                 Collections.reverse(weight);
                 arrayadapter.notifyDataSetChanged();
@@ -103,10 +110,17 @@ public class Weight extends AppCompatActivity {
                 String json = gson.toJson(weight);
                 editor.putString("paino", json);
                 editor.apply();
+
+                et = findViewById(R.id.editTxWeight);
+                et.getText().clear();
+
             }
 
 
         });
+
+        Log.d("ZZZZ", "onClick String: " + weight);
+
     }
 
 
