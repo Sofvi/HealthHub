@@ -107,14 +107,17 @@ public class Statistics extends AppCompatActivity {
 
         chart.setData(data);
         chart.invalidate();
+
     }
+
+
 
     public class DayAxisValueFormatter extends ValueFormatter {
 
         Calendar calendar = Calendar.getInstance();
         String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());
 
-        String[] mDays = {String.valueOf(Calendar.DATE-7), "TU", "WE", "TH", "FR", "SA", "SU",};
+        String[] mDays = {" ", " ", " ", " ", " ", " ", currentDateKey};
 
 
         private final BarLineChartBase<?> chart;
