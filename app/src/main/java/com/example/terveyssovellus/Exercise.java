@@ -58,12 +58,10 @@ public class Exercise extends AppCompatActivity {
         Gson gson = new Gson();
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        String jsonText = prefs.getString("liikunta", null);
+        String jsonText = prefs.getString("e"+currentDate, null);
 
-        if (prefs.getString("liikunta", null)!=null) {
+        if (prefs.getString("e"+currentDate, null)!=null) {
             Log.d("yeet2", jsonText);
-            //    String[] text = gson.fromJson(jsonText, String[].class);
-            //  String str = text.toString();
             String yett= jsonText.replace("\\", "");
             jsonText= yett.replace("[","");
             yett = jsonText.replace("\"","");
@@ -125,8 +123,8 @@ public class Exercise extends AppCompatActivity {
                 SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = prefs.edit();
                 Gson gson = new Gson();
-                String json = gson.toJson(s);
-                editor.putString("liikunta", json);
+                String json = gson.toJson(exer);
+                editor.putString("e"+currentDate, json);
                 editor.apply();
 
                 Toast.makeText(getApplicationContext(),"Nappulaa(eiselapsi) painettu.", Toast.LENGTH_SHORT).show();
