@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DCEDF4"
     tools:context=".Statistics">
 
     <com.github.mikephil.charting.charts.LineChart
@@ -32,7 +33,10 @@
         android:id="@+id/tv_bmi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="Painoindeksi: 25.25"
+        android:textColor="#020202"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +55,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
