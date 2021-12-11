@@ -4,6 +4,7 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -12,15 +13,33 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class UserSettings extends AppCompatActivity {
+import com.google.gson.Gson;
 
+import java.util.Scanner;
+
+public class UserSettings extends AppCompatActivity {
+    private double weight = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        EditText editWeight = findViewById(R.id.et_weight);
         EditText editFood = findViewById(R.id.et_food_goal);
+        SharedPreferences prefs3 = getDefaultSharedPreferences(getApplicationContext());
+        Gson gson = new Gson();
+        String jsonText = prefs3.getString("paino", null);
+        if (prefs3.getString("paino", null) != null) {
+            String paino = prefs3.getString("paino", "0");
+            String s1 = paino.substring(paino.indexOf(":")+1); //thx to ItamarG3 from stackoverflow
+            paino = s1.replace(" kg","");
+            s1 = paino.replace("\"]","");
+            paino = s1.split("\"")[0]; // thx to assylias from stackoverflow
+            weight = Double.parseDouble(paino);
+            editWeight.setText(String.valueOf(weight));
+        }
+
+
         editFood.setOnKeyListener(new View.OnKeyListener()
         {
             public boolean onKey(View v, int keyCode, KeyEvent event)
