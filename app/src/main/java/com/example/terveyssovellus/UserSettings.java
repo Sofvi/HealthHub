@@ -15,6 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class UserSettings extends AppCompatActivity {
@@ -81,6 +85,26 @@ public class UserSettings extends AppCompatActivity {
             }
         });
 
+        editWeight.setOnKeyListener(new View.OnKeyListener()
+        {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
+                {
+                    switch (keyCode)
+                    {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            changeUserWeight();
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         int calories_goal = prefs.getInt("user_food_goal",
                 0);
@@ -116,5 +140,32 @@ public class UserSettings extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("user_height", n);
         editor.commit();
+    }
+    public void changeUserWeight(){
+        ArrayList<String> weight;
+        weight = new ArrayList<String>();
+        EditText editWeight = findViewById(R.id.et_weight);
+        Toast.makeText(getApplicationContext(),"Paino asetettu.", Toast.LENGTH_SHORT).show();
+
+
+        Collections.reverse(weight);
+
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+        String s = currentDate + " Paino: " + editWeight.getText().toString() + " kg";
+        if (s.contains(",")) {
+            s = s.replace(",", ".");
+            Log.d("yeet2", s);
+        }
+        weight.add(s);
+        Collections.reverse(weight);
+        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(weight);
+        editor.putString("paino", json);
+        editor.apply();
+
+
     }
 }
