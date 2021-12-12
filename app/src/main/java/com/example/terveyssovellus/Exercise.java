@@ -31,7 +31,6 @@ public class Exercise extends AppCompatActivity {
     EditText et;
     ListView elv;
     ArrayList<String> exer;
-    ArrayAdapter<String> arrayadapter;
     ArrayAdapter<String> arrayadapter2;
 
     /**
