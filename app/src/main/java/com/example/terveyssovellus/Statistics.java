@@ -128,23 +128,18 @@ Kasataan kuvaaja ja asetetaan se näkymään.
     private void updateFoodChart() {
         BarChart chart = (BarChart) findViewById(R.id.severityBarChart);
 
-
         List<BarEntry> entries = new ArrayList<BarEntry>();
-
-        chart.getDescription().setEnabled(false);
 
         for (int i = 1; i < 8; i++) {
 
             Calendar calendar = Calendar.getInstance();
 
             calendar.add(Calendar.DATE, -7 + i);
-            String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());
+            String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());        //Haetaan currenDateKeylle päivämäärä -7+i, joka antaa viikon ajalta
 
             SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
             int foodCalories = prefs.getInt((currentDateKey),
                     0);
-
-
             entries.add(new BarEntry(i, foodCalories));
 
         }
@@ -161,6 +156,7 @@ Kasataan kuvaaja ja asetetaan se näkymään.
         xAxis.setLabelCount(7);
         xAxis.setValueFormatter(xAxisFormatter);
 
+        chart.getDescription().setEnabled(false);
         chart.setData(data);
         chart.invalidate();
 
