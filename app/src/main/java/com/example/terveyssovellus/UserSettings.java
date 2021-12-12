@@ -20,12 +20,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Scanner;
-
+/**
+ * Luokka on käyttäjän asetuksien näyttö
+ * @author Suvi Laitinen, Henri Vuento, Tuomo Muttonen, Eetu Haverinen
+ * @version 12.12.2021
+ */
 public class UserSettings extends AppCompatActivity {
 
     private double weight = 0;                                                                          //muuttuja painolle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /**
+         * Hakee kaloritavoitteen muistista ja asettaa sen textViewiin
+         * Hakee painon muistista ja asettaa sen textViewiin
+         * Hakee pituuden muistista ja asettaa sen textViewiin
+         */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,8 +55,10 @@ public class UserSettings extends AppCompatActivity {
 
             editWeight.setText(String.valueOf(weight));                                                 //asetetaan paino näkyville ui:hin
         }
-
-        editFood.setOnKeyListener(new View.OnKeyListener()                                              //tarkkaillaan millon käyttäjä on syöttänyt tietoa päivittäinen kaloritavote osioon ja reakoidaan entterin painallukseen
+        /**
+         * tarkkailee millon käyttäjä on syöttänyt kenttään päivittäisen kaloritavoitteen ja reagoi entterin painallukseen suorittamalla changeUserFood funktion
+         */
+        editFood.setOnKeyListener(new View.OnKeyListener()
         {
             public boolean onKey(View v, int keyCode, KeyEvent event)
             {
@@ -66,6 +77,9 @@ public class UserSettings extends AppCompatActivity {
                 return false;
             }
         });
+        /**
+         * tarkkailee millon käyttäjä on syöttänyt kenttään pituuden ja reagoi entterin painallukseen suorittamalla changeUserHeight funktion
+         */
 
         EditText editHeight = findViewById(R.id.et_height);                                             //määritetään ui elementti muuttujaan
         editHeight.setOnKeyListener(new View.OnKeyListener()                                            //tarkkaillaan millon käyttäjä on syöttänyt uuden pituuden ja reakoidaan entterin painallukseen
@@ -87,6 +101,9 @@ public class UserSettings extends AppCompatActivity {
                 return false;
             }
         });
+        /**
+         * tarkkailee millon käyttäjä on syöttänyt kenttään painon ja reagoi entterin painallukseen suorittamalla changeUserWeight funktion
+         */
 
         editWeight.setOnKeyListener(new View.OnKeyListener()                                            //tarkkaillaan millon käyttäjä on syöttänyt uuden painolukeman ja reagoidaan entterin painallukseen
         {
