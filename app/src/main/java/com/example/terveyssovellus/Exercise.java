@@ -38,9 +38,9 @@ public class Exercise extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         nappi = findViewById(R.id.esub);
         elv = findViewById(R.id.exerciseList);
+        //** luodaan arraylist sekä adapter jolla saadaan arraylist sisältö lista näkymään
         exer = new ArrayList<String>();
         et = findViewById(R.id.editTxexercise);
         TextView tv_kalorit = findViewById(R.id.textView13);
@@ -49,7 +49,7 @@ public class Exercise extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 exer);
         elv.setAdapter(arrayadapter2);
-
+        // määritellään dropdown menu
         Spinner liikunnatDropdown = (Spinner) findViewById(R.id.spinnerExercises);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -119,7 +119,10 @@ public class Exercise extends AppCompatActivity {
                 }
                 else{
                  s = currentDate + " liikuntamuoto " + sel;}
-
+                if (s.contains(",")) {
+                    //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
+                    s = s.replace(",", ".");
+                }
                 Log.d("yeet", s);
                 exer.add(s);
                 String debug = exer.toString();
