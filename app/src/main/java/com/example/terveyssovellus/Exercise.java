@@ -48,8 +48,8 @@ public class Exercise extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         nappi = findViewById(R.id.esub);
         elv = findViewById(R.id.exerciseList);
-        //** luodaan arraylist sekä adapter jolla saadaan arraylist sisältö lista näkymään
-        exer = new ArrayList<String>();
+
+        exer = new ArrayList<String>();                                                                 //** luodaan arraylist sekä adapter jolla saadaan arraylist sisältö lista näkymään
         et = findViewById(R.id.editTxexercise);
         TextView tv_kalorit = findViewById(R.id.textView13);
         arrayadapter2 = new ArrayAdapter<String>(
@@ -57,57 +57,52 @@ public class Exercise extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 exer);
         elv.setAdapter(arrayadapter2);
-        // määritellään dropdown menu
-        Spinner liikunnatDropdown = (Spinner) findViewById(R.id.spinnerExercises);
-        //** tehdään adapteri dropdown menulle ja haetaan siihen strings.xml tiedostosta sisältö
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+
+        Spinner liikunnatDropdown = (Spinner) findViewById(R.id.spinnerExercises);                      // määritellään dropdown menu
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(                                   //** tehdään adapteri dropdown menulle ja haetaan siihen strings.xml tiedostosta sisältö
                 Exercise.this,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.liikuntamuodot));
         /**
          * haetaan muistista sinne tallennetut liikunta suoritukset ja asetetaan näkyviin listanäkymään
          */
-        //määritetään paikka muistista josta haetaan tieto
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
 
-        //Haetaan päivä+aika
-        Calendar calendar = Calendar.getInstance();
-        //Asetetaan currentDateKey muotoon pp.kk.vvvv
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        //asetetaan muistista haettu arvo muuttujaan
-        String jsonText = prefs.getString("e"+currentDate, null);
-        //tarkastetaan että muistiin on tallennettu tietoa
-        if (prefs.getString("e"+currentDate, null)!=null) {
-            //poistetaan stringistä erikoismerkkit ja parsetaan stringi
-            String yett= jsonText.replace("\\", "");
+        Calendar calendar = Calendar.getInstance();                                                     //Haetaan päivä+aika
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());                   //Asetetaan currentDateKey muotoon pp.kk.vvvv
+        String jsonText = prefs.getString("e"+currentDate, null);                           //asetetaan muistista haettu arvo muuttujaan
+
+        if (prefs.getString("e"+currentDate, null)!=null) {                                 //tarkastetaan että muistiin on tallennettu tietoa
+            String yett= jsonText.replace("\\", "");                                    //poistetaan stringistä erikoismerkkit ja parsetaan stringi
             jsonText= yett.replace("[","");
             yett = jsonText.replace("\"","");
             jsonText= yett.replace("]","");
             String[] parsed = jsonText.split(",");
-            //lisätään parsetut stringit arraylistin
-            for (int i=0;i<parsed.length;i++) {
+
+            for (int i=0;i<parsed.length;i++) {                                                         //lisätään parsetut stringit arraylistin
 
                 exer.add(parsed[i]);
 
             }
         }
         /**
-         * tarkkaillaan käyttäjän valintaa dropdown menussa ja näytetään tai piilotetaan elementtejä sen mukaan, lisäksi tallennetaan valinta muuttujan
+         * tarkkaillaan käyttäjän valintaa dropdown menussa ja näytetään tai piilotetaan elementtejä sen mukaan
+         * lisäksi tallennetaan valinta muuttujana
          */
         //
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         liikunnatDropdown.setAdapter(arrayAdapter);
         liikunnatDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            //kun listasta valitaan kohta "Muu" niin näytetään syöttö elementti jotta käyttäjä saa lisättyä kalori määrän
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {       //kun listasta valitaan kohta "Muu" niin näytetään syöttö elementti jotta käyttäjä saa lisättyä kalori määrän
                  sel = parent.getSelectedItem().toString();
                  if(sel.equals("Muu")){
                     et.setVisibility(View.VISIBLE);
                     tv_kalorit.setVisibility(View.VISIBLE);
                  }
-                 //kaikilla muilla valinnoilla piilotetaan syöttö elementti
-                 else{
+                 else{                                                                                  //kaikilla muilla valinnoilla piilotetaan syöttö elementti
                      et.setVisibility(View.INVISIBLE);
                      tv_kalorit.setVisibility(View.INVISIBLE);
                  }
@@ -124,47 +119,42 @@ public class Exercise extends AppCompatActivity {
     }
 
     /**
-     * Reakoidaan napin painalluukseen ja tallennetaan tietoa puhelimen muistiin
+     * Reagoidaan napin painallukseen ja tallennetaan tietoa puhelimen muistiin
      */
 
     public void onClick() {
         nappi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Haetaan päivä+aika
-                Calendar calendar = Calendar.getInstance();
-                //Asetetaan currentDateKey muotoon pp.kk.vvvv
-                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+                Calendar calendar = Calendar.getInstance();                                             //Haetaan päivä+aika
+                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());           //Asetetaan currentDateKey muotoon pp.kk.vvvv
                 String s;
-                //** muotoillaan tallennettava stringi sen mukaan että mitä käyttäjä on valinnut
-                if(sel.equals("Muu")){
-                    //jos valinta "Muu" niin tallennetaan käyttäjän antamat kalorit
-                     s = currentDate + " Muu jossa poltetut kalorit " + et.getText().toString();
+
+                if(sel.equals("Muu")){                                                                  // muotoillaan tallennettava stringi sen mukaan että mitä käyttäjä on valinnut
+                     s = currentDate + " Muu jossa poltetut kalorit " + et.getText().toString();        //jos valinta "Muu" niin tallennetaan käyttäjän antamat kalorit
                     et.getText().clear();
                 }
-                //muutoin tallennetaan listasta valittu kohta ja kalorit sen mukaan
-                else{
-                 s = currentDate + " " + sel;}
-                //** tarkistetaan käyttäjän syöte siltä varalta että siinä olisi pilkkuja ja korvataan ne pisteellä
-                if (s.contains(",")) {
-                    //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
-                    s = s.replace(",", ".");
+                else{                                                                                   //muutoin tallennetaan listasta valittu kohta ja kalorit sen mukaan
+                 s = currentDate + " " + sel;
                 }
-                //tallennetaan stringi arraylistiin
-                exer.add(s);
-                //päivitetään lista näkymä uudella tiedolla
-                arrayadapter2.notifyDataSetChanged();
-                //valitaan paikka muistista johon tallennetaan
-                SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+
+                if (s.contains(",")) {                                                                  //tarkistetaan käyttäjän syöte siltä varalta että siinä olisi pilkkuja ja korvataan ne pisteellä
+                    s = s.replace(",", ".");                                            //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
+                }
+
+                exer.add(s);                                                                            //tallennetaan stringi arraylistiin
+                arrayadapter2.notifyDataSetChanged();                                                   //päivitetään lista näkymä uudella tiedolla
+
+                SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());         //valitaan paikka muistista johon tallennetaan
                 SharedPreferences.Editor editor = prefs.edit();
-                //** käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon
-                Gson gson = new Gson();
+
+                Gson gson = new Gson();                                                                 //** käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon
                 String json = gson.toJson(exer);
-                //** tallennetaan tieto jsno muodossa muistiin
-                editor.putString("e"+currentDate, json);
+
+                editor.putString("e"+currentDate, json);                                                //** tallennetaan tieto jsno muodossa muistiin
                 editor.apply();
-                //ilmoitetaan käyttäjälle että suoritus on lisätty
-                Toast.makeText(getApplicationContext(),sel + " lisätty.", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getApplicationContext(),sel + " lisätty.", Toast.LENGTH_SHORT).show();   //ilmoitetaan käyttäjälle että suoritus on lisätty
             }
 
 
