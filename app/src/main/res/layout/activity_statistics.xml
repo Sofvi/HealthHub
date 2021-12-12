@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Kaloreita poltettu: 0"
+            android:text="Kaloreita tänään poltettu: 0"
             android:textAlignment="center"
             android:textColor="#020202"
             android:textSize="16sp"
