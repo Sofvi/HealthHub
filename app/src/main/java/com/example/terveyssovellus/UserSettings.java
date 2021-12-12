@@ -214,7 +214,7 @@ public class UserSettings extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         ////Asetetaan currentDateKey muotoon pp.kk.vvvv, käytetään Keynä sharedPreferensseissä
         String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        //luodaan stringi joka tallennetaan muistiin
+        //luodaan stringi joka tallennetaan muistiin joka sisältää päivän ja painon arvon
         String s = currentDate + " Paino: " + editWeight.getText().toString() + " kg";
         //tarkastetaan käyttäjän syöte
         if (s.contains(",")) {
@@ -228,11 +228,10 @@ public class UserSettings extends AppCompatActivity {
         //valitaan muistipaikka johon tallennetaan
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = prefs.edit();
-        //luodaan gson objekti jotta saadaan arraylist tallennettua muistiin
+        //** käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon
         Gson gson = new Gson();
-        //muutetaan tieto json muotoon
         String json = gson.toJson(weight);
-        //tallennetaan tieto muistiin
+        //** tallennetaan tieto muistiin json muodossa
         editor.putString("paino", json);
         editor.apply();
 
