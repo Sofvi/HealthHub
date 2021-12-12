@@ -128,7 +128,7 @@ public class Exercise extends AppCompatActivity {
                 editor.putString("e"+currentDate, json);
                 editor.apply();
 
-                Toast.makeText(getApplicationContext(),"Nappulaa(eiselapsi) painettu.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),sel + " lisätty.", Toast.LENGTH_SHORT).show();
             }
 
 

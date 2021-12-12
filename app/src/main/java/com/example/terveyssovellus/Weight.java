@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Weight extends AppCompatActivity {
-//alustetaan elementtien muuttujat myöhempää käyttöä varten
+
     Button bt;
     EditText et;
     ListView lv;
@@ -41,11 +41,16 @@ public class Weight extends AppCompatActivity {
 
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();
+
+
         String jsonText = prefs.getString("paino", null);
+
 
         et = findViewById(R.id.editTxWeight);
         bt = findViewById(R.id.button);
         lv = findViewById(R.id.weightListview);
+
+
 
         weight = new ArrayList<String>();
         arrayadapter = new ArrayAdapter<String>(
@@ -55,10 +60,13 @@ public class Weight extends AppCompatActivity {
         lv.setAdapter(arrayadapter);
 
         if (prefs.getString("paino", null) != null) {
+            //    String[] text = gson.fromJson(jsonText, String[].class);
+            //  String str = text.toString();
             String yett = jsonText.replace("\\", "");
             jsonText = yett.replace("[", "");
             yett = jsonText.replace("\"", "");
             jsonText = yett.replace("]", "");
+
             String[] parsed = jsonText.split(",");
 
             for (int i = 0; i < parsed.length; i++) {
