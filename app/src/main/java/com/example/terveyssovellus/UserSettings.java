@@ -40,16 +40,21 @@ public class UserSettings extends AppCompatActivity {
 
             String[] parsed = jsonText.split(",");
             String str;
-            for (int i = 0;i> parsed.length;i++) {
-                str=parsed[i];
-
-                str = str.replaceAll("[^\\d-]", "");
-                str.substring(10);
-                Log.d("yeet", str);
-
+            String str2;
+            int sum = 0;
+            Log.d("yeet5", parsed[0]);
+            for (int i = 0;i< parsed.length;i++) {
+               str=parsed[i];
+                str2 = str.replace("\"]","");
+                str2 = str2.replace("[\"","");
+                str2 = str2.replaceAll("[^\\d-]", "");
+                str2=str2.substring(8);
+                sum = sum+Integer.parseInt(str2);
+                Log.d("yeet6", str2);
+                EditText editBurnedCalories = findViewById(R.id.et_exercise_goal);
+                editBurnedCalories.setText(String.valueOf(sum));
             }
-            //EditText editBurnedCalories = findViewById(R.id.et_exercise_goal);
-          //  editBurnedCalories.setText(String.valueOf(cal));
+
 
         }
 
