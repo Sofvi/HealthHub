@@ -50,48 +50,53 @@ public class Statistics extends AppCompatActivity {
     private void updateWeightChart() {
 
 
-        ArrayList<Entry> painot = new ArrayList<Entry>();
+        ArrayList<Entry> entries = new ArrayList<Entry>();
 
-        ArrayList<Float> weight = new ArrayList<Float>();
+        ArrayList<Float> painot = new ArrayList<Float>();
 
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-        String painoString = prefs.getString("paino",
+        String painoString = prefs.getString("paino",                                               //Haetaan aikaisemmin tallennetut painot, jotka ovat Stringinä
                 "0");
 
 
         for (int i = 0; i < 7; i++) {
-
-            String s1 = painoString.substring(painoString.indexOf(":") + 1); //thx to ItamarG3 from stackoverflow
+/*
+Otetaan muistiin tallennetusta Stringistä 7 ensimmäistä painoa lukuina
+Painot tallennetaan painot listaan float:ina
+*/
+            String s1 = painoString.substring(painoString.indexOf(":") + 1);
             painoString = s1;
             float paino = Float.parseFloat(s1.split(" kg")[0]);
-            weight.add(paino);
+            painot.add(paino);
         }
 
-        Collections.reverse(weight);
-        Log.d("ZZZZ", "updateWeightChart: " + weight);
+        Collections.reverse(painot);                                                                    //Käännetään painot lista toisin päin, jotta ne voidaan syöttää taulukkoon oikein
+
 
         for (int i = 0; i < 7; i++) {
-
-            painot.add(new BarEntry(i, weight.get(i)));
-            Log.d("ZZZZ", "updateWeightChart: " + weight.get(i));
+/*
+Tallennetaan painot entries listaan
+ */
+            entries.add(new BarEntry(i, painot.get(i)));
+            Log.d("ZZZZ", "updateWeightChart: " + painot.get(i));
         }
 
 
-
+/*
+Kasataan kuvaaja ja asetetaan se näkymään.
+ */
         LineChart chart = findViewById(R.id.paino_linechart);
-        LineDataSet lineDataSet1 = new LineDataSet(painot, "Paino");
+        LineDataSet lineDataSet1 = new LineDataSet(entries, "Paino");
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(lineDataSet1);
         chart.getDescription().setEnabled(false);
-
         ValueFormatter xAxisFormatter = new DayAxisValueFormatter(chart);
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1f); // only intervals of 1 day
+        xAxis.setGranularity(1f);
         xAxis.setLabelCount(9);
         xAxis.setValueFormatter(xAxisFormatter);
-
 
         LineData data = new LineData(dataSets);
         lineDataSet1.setColor(rgb(39, 78, 41));
@@ -102,10 +107,10 @@ public class Statistics extends AppCompatActivity {
 
     private void updateBMI() {
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-        String paino = prefs.getString("paino",
+        String paino = prefs.getString("paino",                                                     //Haetaan tallennettujen painojen string
                 "0");
         String s1 = paino.substring(paino.indexOf(":") + 1); //thx to ItamarG3 from stackoverflow
-        paino = s1.split(" kg")[0];
+        paino = s1.split(" kg")[0];                                                                 //
 
         weight = Double.parseDouble(paino);
 
