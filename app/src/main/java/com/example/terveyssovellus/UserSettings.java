@@ -32,7 +32,27 @@ public class UserSettings extends AppCompatActivity {
         EditText editFood = findViewById(R.id.et_food_goal);
         SharedPreferences prefs3 = getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();
-        String jsonText = prefs3.getString("paino", null);
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+        String jsonText = prefs3.getString("e"+currentDate, null);
+
+        if(jsonText!=null){
+
+            String[] parsed = jsonText.split(",");
+            String str;
+            for (int i = 0;i> parsed.length;i++) {
+                str=parsed[i];
+
+                str = str.replaceAll("[^\\d-]", "");
+                str.substring(10);
+                Log.d("yeet", str);
+
+            }
+            //EditText editBurnedCalories = findViewById(R.id.et_exercise_goal);
+          //  editBurnedCalories.setText(String.valueOf(cal));
+
+        }
+
         if (prefs3.getString("paino", null) != null) {
             String paino = prefs3.getString("paino", "0");
             String s1 = paino.substring(paino.indexOf(":")+1); //thx to ItamarG3 from stackoverflow
@@ -146,10 +166,7 @@ public class UserSettings extends AppCompatActivity {
         weight = new ArrayList<String>();
         EditText editWeight = findViewById(R.id.et_weight);
         Toast.makeText(getApplicationContext(),"Paino asetettu.", Toast.LENGTH_SHORT).show();
-
-
         Collections.reverse(weight);
-
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
         String s = currentDate + " Paino: " + editWeight.getText().toString() + " kg";
