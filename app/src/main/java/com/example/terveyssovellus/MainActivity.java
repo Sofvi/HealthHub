@@ -7,6 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ * Luokka on sovelluksen aloitusnäyttö
+ * @author Suvi Laitinen, Henri Vuento, Tuomo Muttonen, Eetu Haverinen
+ * @version 12.12.2021
+ */
+
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
