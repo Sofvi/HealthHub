@@ -163,7 +163,7 @@ public class UserSettings extends AppCompatActivity {
         textView.setText(String.valueOf(calories_goal));
        //määritetään paikka muistista josta haetaan pituus
         SharedPreferences prefs2 = getDefaultSharedPreferences(getApplicationContext());
-        int user_height = prefs2.getInt("user_height", 0);
+        float user_height = prefs2.getFloat("user_height", 0);
         //haetaan elemennti ui:sta id:llä ja lisätään muuttujaan
         TextView textView2 = findViewById(R.id.et_height);
         //asetetaan pituus näkyville ui:hin
@@ -191,12 +191,12 @@ public class UserSettings extends AppCompatActivity {
         //haetaan ui elementti idellä ja tallennetaan muuttujaan
         EditText editText = findViewById(R.id.et_height);
         //tallennetaan käyttäjän syöte muistiin
-        int n = Integer.parseInt(editText.getText().toString());
+        float n = Float.parseFloat(editText.getText().toString());
         //Valitaan muistipaikka johon tallennetaan
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = prefs.edit();
         //tallennetaan pituus muistiin
-        editor.putInt("user_height", n);
+        editor.putFloat("user_height", n);
         editor.commit();
     }
     //functio jolla tallennetaan käyttäjän paino muistiin
