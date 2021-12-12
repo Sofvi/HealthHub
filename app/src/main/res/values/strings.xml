@@ -24,7 +24,7 @@
     <string name="todo">TODO</string>
 
     <string-array name="liikuntamuodot">
-        <item>Juoksu</item>
+        <item>Juoksu cal 600</item>
         <item>Uinti</item>
         <item>Pyöräily</item>
         <item>Muu</item>

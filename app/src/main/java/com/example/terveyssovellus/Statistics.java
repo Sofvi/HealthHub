@@ -87,7 +87,7 @@ public class Statistics extends AppCompatActivity {
                 //sijoitetaan muuttujaan parsettu osuus
                 str=parsed[i];
                 //tarkistetaan että kyseessä on käyttäjän syöte
-                if(str.contains("Muu")) {
+             //   if(str.contains("Muu")) {
                     //parsetaan tieto siten että jäljelle jää enään pelkät numerot
                     str2 = str.replace("\"]", "");
                     str2 = str2.replace("[\"", "");
@@ -100,7 +100,7 @@ public class Statistics extends AppCompatActivity {
                     //asetetaan poltetut kalorit näkyville UI:hin
                     TextView editBurnedCalories = findViewById(R.id.tv_poltetutkalorit);
                     editBurnedCalories.setText("Kaloreita poltettu: " + String.valueOf(sum));
-                }
+               // }
             }
         }
     }

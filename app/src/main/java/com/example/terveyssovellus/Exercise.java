@@ -51,11 +51,12 @@ public class Exercise extends AppCompatActivity {
         elv.setAdapter(arrayadapter2);
         // määritellään dropdown menu
         Spinner liikunnatDropdown = (Spinner) findViewById(R.id.spinnerExercises);
-
+        //** tehdään adapteri dropdown menulle ja haetaan siihen strings.xml tiedostosta sisältö
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 Exercise.this,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.liikuntamuodot));
+
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();
         Calendar calendar = Calendar.getInstance();
