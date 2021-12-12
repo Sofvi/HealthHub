@@ -67,8 +67,11 @@ public class Weight extends AppCompatActivity {
             yett = jsonText.replace("\"", "");
             jsonText = yett.replace("]", "");
 
-            String[] parsed = jsonText.split(",");                                                  //tallennetaan parsetut osat
-            /** loop jossa käydään läpi array johon tieto on tallennettu ja tallennetaan se arraylistin*/
+            /**
+             * Tallennetaan parsetut osat
+             * Loop jossa käydään läpi array johon tieto on tallennettu ja tallennetaan se arraylistin
+             * */
+            String[] parsed = jsonText.split(",");
             for (int i = 0; i < parsed.length; i++) {
 
                 weight.add(parsed[i]);
@@ -94,16 +97,21 @@ public class Weight extends AppCompatActivity {
                 weight.add(s);                                                                          //tallennetaan tieto arraylistiin
                 Collections.reverse(weight);                                                            //käännettään arraylist jotta uusin tieto näkyy ensimmäisenä
                 arrayadapter.notifyDataSetChanged();                                                    //päivitetään lista näkymä uudella tiedolla
-                /** valitaan paikka muistista johon tieto tallennetaan*/
+
+                /**
+                 * Valitaan paikka muistista johon tieto tallennetaan
+                 * Käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon
+                 * Tallennetaan tieto jsno muodossa muistiin
+                 * Tyhjennettään syöttö kenttä
+                 * */
                 SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = prefs.edit();
-                /** käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon*/
+
                 Gson gson = new Gson();
                 String json = gson.toJson(weight);
-                /** tallennetaan tieto jsno muodossa muistiin*/
                 editor.putString("paino", json);
                 editor.apply();
-                /** tyhjennettään syöttö kenttä*/
+
                 et = findViewById(R.id.editTxWeight);
                 et.getText().clear();
 
