@@ -67,7 +67,7 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/paino_linechart"
             android:layout_width="match_parent"
-            android:layout_height="309dp"
+            android:layout_height="302dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"

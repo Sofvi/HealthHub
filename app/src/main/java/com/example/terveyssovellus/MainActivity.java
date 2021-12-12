@@ -15,27 +15,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onClickFood(View view) {
+    public void onClickFood(View view) {                                                                //button vie kalorilaskuri activityyn
         Intent intent = new Intent(this, Food.class);
         startActivity(intent);
     }
 
-    public void onClickWeight(View view) {
+    public void onClickWeight(View view) {                                                              //button vie painonseuranta activityyn
         Intent intent = new Intent(this, Weight.class);
         startActivity(intent);
     }
 
-    public void onClickExercise(View view) {
+    public void onClickExercise(View view) {                                                            //button vie liikuntasuoritus activityyn
         Intent intent = new Intent(this, Exercise.class);
         startActivity(intent);
     }
 
-    public void onClickSettings(View view) {
+    public void onClickSettings(View view) {                                                            //button vie omat tiedot activityyn
         Intent intent = new Intent(this, UserSettings.class);
         startActivity(intent);
     }
 
-    public void onClickStatistics(View view) {
+    public void onClickStatistics(View view) {                                                          //button vie seuranta activityyn
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
     }
