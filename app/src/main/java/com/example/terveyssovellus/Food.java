@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 /**
  * Luokka on Kalorilaskurin näyttö
- * @author Suvi Laitinen, Henri Vuento, Tuomo Muttonen, Eetu Haverinen
+ * @author Tuomo Muttonen, Suvi Laitinen, Henri Vuento, Eetu Haverinen
  * @version 12.12.2021
  */
 

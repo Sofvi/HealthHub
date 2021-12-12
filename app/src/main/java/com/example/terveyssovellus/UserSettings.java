@@ -120,6 +120,9 @@ public class UserSettings extends AppCompatActivity {
     }
 
     public void changeUserFood(){                                                                       //funktio jolla tallennetaan muistiin kaloritavoite
+        /**
+         * Tallennetaan käyttäjän syöttämä päivittäinen kaloritavoite muistiin
+         */
         Toast.makeText(getApplicationContext(),"Päivittäinen kaloritavoite asetettu.", Toast.LENGTH_SHORT).show();  //ilmoitetetaan käyttäjälle että kalori tavoite on asetettu
         EditText editText = findViewById(R.id.et_food_goal);                                            //haetaan ui elementti id:llä ja asetetaan muuttujaan
         int n = Integer.parseInt(editText.getText().toString());                                        //luodaan muuttuja jonka arvoksi asetetaan käyttäjän syöttämä arvo
@@ -132,6 +135,9 @@ public class UserSettings extends AppCompatActivity {
     }
 
     public void changeUserHeight(){                                                                      //funktio pituuden tallentamista muistiin varten
+        /**
+         * Tallennetaan käyttäjän syöttämä pituus muistiin
+         */
         Toast.makeText(getApplicationContext(),"Pituus asetettu.", Toast.LENGTH_SHORT).show();      //ilmoitetaan käyttäjälle että pituus on asetettu
         EditText editText = findViewById(R.id.et_height);                                               //haetaan ui elementti idellä ja tallennetaan muuttujaan
         float n = Float.parseFloat(editText.getText().toString());                                      //tallennetaan käyttäjän syöte muistiin
@@ -144,6 +150,10 @@ public class UserSettings extends AppCompatActivity {
     }
 
     public void changeUserWeight(){                                                                     //funktio jolla tallennetaan käyttäjän paino muistiin
+        /**
+         *
+         * Tallennetaan käyttäjän syöttämä paino muistiin
+         */
         ArrayList<String> weight;                                                                       //luodaan arraylist weight johon tallennetaan paino
         weight = new ArrayList<String>();
         EditText editWeight = findViewById(R.id.et_weight);                                             //haetaan ui elementti id:llä
