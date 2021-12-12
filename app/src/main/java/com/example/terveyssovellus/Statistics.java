@@ -46,6 +46,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Luokka on Seuranta sivun näyttö
+ * @author Suvi Laitinen, Henri Vuento, Tuomo Muttonen, Eetu Haverinen
+ * @version 12.12.2021
+ */
+
 public class Statistics extends AppCompatActivity {
 
     private double weight = 0;
@@ -56,7 +62,7 @@ public class Statistics extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
-        updateBMI();
+        updateBMI();                                                                                    //Kutsutaan kaikki metodit
         updateFoodChart();
         updateWeightChart();
         updateBurnedCalories();
@@ -65,6 +71,10 @@ public class Statistics extends AppCompatActivity {
     }
 
     private void updateBurnedCalories(){
+        /**
+         * Hakee muisista päivän aikana poltetut kalorit ja lisää ne yhteen
+         * Päivittää päivän aikana yhteensä poltetut kalorit textViewiin
+         */
         //määritetään paikka muistissa jossa haetaan tiedot
         SharedPreferences prefs3 = getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();
@@ -106,6 +116,11 @@ public class Statistics extends AppCompatActivity {
     }
 
     private void updateWeightChart() {
+        /**
+         * Hakee muistista tallennetut painot
+         * Muotoilee kuvaajan
+         * Luo tallennetuista painoista kuvaajan
+         */
 
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
@@ -164,6 +179,11 @@ Kasataan kuvaaja ja asetetaan se näkymään.
     }
 
     private void updateBMI() {
+        /**
+         * Ottaa viimeisimmäksi tallennetun painon
+         * Hakee tallennetun pituuden
+         * laskee painoindeksin paino(kg)/pituus(m)/pituus(m) kaavalla
+         */
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         String paino = prefs.getString("paino",                                                     //Haetaan tallennettujen painojen string
                 "0");
@@ -184,6 +204,11 @@ Kasataan kuvaaja ja asetetaan se näkymään.
     }
 
     private void updateFoodChart() {
+        /**
+         * Hakee muisista syödyt kalorit
+         * Muotoilee kuvaajan
+         * Luo tallennetuista kaloreista kuvaajan
+         */
         BarChart chart = (BarChart) findViewById(R.id.severityBarChart);
 
         List<BarEntry> entries = new ArrayList<BarEntry>();
