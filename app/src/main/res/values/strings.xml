@@ -24,9 +24,10 @@
     <string name="todo">TODO</string>
 
     <string-array name="liikuntamuodot">
-        <item>Juoksu cal 600</item>
-        <item>Uinti</item>
-        <item>Pyöräily</item>
+        <item>Juoksu (puoli tuntia) kcal 300</item>
+        <item>Juoksu (tunti) kcal 600</item>
+        <item>Uinti (puoli tuntia) kcal 250</item>
+        <item>Pyöräily (puoli tuntia) kcal 110</item>
         <item>Muu</item>
     </string-array>
 

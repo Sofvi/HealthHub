@@ -119,7 +119,7 @@ public class Exercise extends AppCompatActivity {
                     et.getText().clear();
                 }
                 else{
-                 s = currentDate + " liikuntamuoto " + sel;}
+                 s = currentDate + " " + sel;}
                 if (s.contains(",")) {
                     //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
                     s = s.replace(",", ".");
