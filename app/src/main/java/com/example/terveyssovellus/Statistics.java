@@ -54,22 +54,12 @@ public class Statistics extends AppCompatActivity {
 
         ArrayList<Float> weight = new ArrayList<Float>();
 
-/*      painot.add(new Entry(9,20));
-        painot.add(new Entry(8,50));
-        painot.add(new Entry(7,10));
-        painot.add(new Entry(4,30));
-        painot.add(new Entry(5,50));
-        painot.add(new Entry(6,10));
-        painot.add(new Entry(7,30));
-*/
-
-
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         String painoString = prefs.getString("paino",
                 "0");
 
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 7; i++) {
 
             String s1 = painoString.substring(painoString.indexOf(":") + 1); //thx to ItamarG3 from stackoverflow
             painoString = s1;
@@ -80,7 +70,7 @@ public class Statistics extends AppCompatActivity {
         Collections.reverse(weight);
         Log.d("ZZZZ", "updateWeightChart: " + weight);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 7; i++) {
 
             painot.add(new BarEntry(i, weight.get(i)));
             Log.d("ZZZZ", "updateWeightChart: " + weight.get(i));
@@ -99,7 +89,7 @@ public class Statistics extends AppCompatActivity {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f); // only intervals of 1 day
-        xAxis.setLabelCount(7);
+        xAxis.setLabelCount(9);
         xAxis.setValueFormatter(xAxisFormatter);
 
 
