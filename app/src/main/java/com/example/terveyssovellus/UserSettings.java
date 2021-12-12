@@ -21,6 +21,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Scanner;
 
+/*
+APUAA
+ */
 public class UserSettings extends AppCompatActivity {
     private double weight = 0;
     @Override
