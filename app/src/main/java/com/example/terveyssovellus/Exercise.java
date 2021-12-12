@@ -25,6 +25,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
+/**
+ * Luokka on liikunnan lisäyksen näyttö
+ * @author Henri Vuento, Tuomo Muttonen Suvi Laitinen, Eetu Haverinen
+ * @version 12.12.2021
+ */
 public class Exercise extends AppCompatActivity {
     Button nappi;
     String sel;
@@ -35,10 +40,6 @@ public class Exercise extends AppCompatActivity {
 
     /**
      * asetetaan näkyviin activity ja haetaan ohjelman kannalta olennaiset osat muistista, sekä asetetaan näkyviin ui:hin, käsitellään dropdown menun valintoja
-     * @author Henri Vuento, Tuomo Muttonen Suvi Laitinen, Eetu Haverinen
-     * @version 12.12.2021
-     * @param savedInstanceState
-     *
      */
 
     @Override
