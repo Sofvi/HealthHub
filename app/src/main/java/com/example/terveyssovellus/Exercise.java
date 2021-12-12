@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -42,6 +43,7 @@ public class Exercise extends AppCompatActivity {
         elv = findViewById(R.id.exerciseList);
         exer = new ArrayList<String>();
         et = findViewById(R.id.editTxexercise);
+        TextView tv_kalorit = findViewById(R.id.textView13);
         arrayadapter2 = new ArrayAdapter<String>(
                 Exercise.this,
                 android.R.layout.simple_list_item_1,
@@ -86,9 +88,11 @@ public class Exercise extends AppCompatActivity {
                 Log.d("yeet", sel);
                  if(sel.equals("Muu")){
                     et.setVisibility(View.VISIBLE);
+                    tv_kalorit.setVisibility(View.VISIBLE);
                  }
                  else{
                      et.setVisibility(View.INVISIBLE);
+                     tv_kalorit.setVisibility(View.INVISIBLE);
                  }
 
             }

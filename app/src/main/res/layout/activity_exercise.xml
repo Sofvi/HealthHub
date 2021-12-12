@@ -29,6 +29,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.21" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="176dp"
+        android:layout_height="33dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Syötä poltetut kalorit"
+        android:textAlignment="center"
+        android:textColor="#050505"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.699" />
+
     <Spinner
         android:id="@+id/spinnerExercises"
         android:layout_width="413dp"
@@ -48,11 +64,11 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/lis"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTxexercise"
         app:layout_constraintVertical_bias="0.338" />
 
     <EditText
@@ -62,12 +78,12 @@
         android:ems="10"
         android:inputType="number"
         android:textColor="#090909"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.327"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerExercises"
+        app:layout_constraintVertical_bias="0.676"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ListView
