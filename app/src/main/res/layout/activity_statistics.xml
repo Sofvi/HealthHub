@@ -50,6 +50,26 @@
             app:layout_constraintVertical_bias="0.518" />
 
         <TextView
+            android:id="@+id/blank5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_poltetutkalorit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Kaloreita poltettu: 0"
+            android:textAlignment="center"
+            android:textColor="#020202"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.518" />
+
+        <TextView
             android:id="@+id/blank3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -21,9 +21,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Scanner;
 
-/*
-APUAA
- */
 public class UserSettings extends AppCompatActivity {
     //muuttuja painolle
     private double weight = 0;
@@ -38,43 +35,7 @@ public class UserSettings extends AppCompatActivity {
         //määritetään paikka muistissa jossa haetaan tiedot
         SharedPreferences prefs3 = getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();
-        //Haetaan päivä+aika
-        Calendar calendar = Calendar.getInstance();
-        //Asetetaan currentDateKey muotoon pp.kk.vvvv, käytetään Keynä sharedPreferensseissä
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        //muistista haettu tieto tallennetaan muuttujaan
-        String jsonText = prefs3.getString("e"+currentDate, null);
-        //ehto jossa tarkistetaan että muistissa oli tallenttu tietoa, estää mahdolliset virhetilanteet
-        if(jsonText!=null){
-           //Pilkotaan tieto joka on haettu muistista
-            String[] parsed = jsonText.split(",");
-            //muuttujia stringin pilkkomista varten
-            String str;
-            String str2;
-            int sum = 0;
-            //looppi jossa pilkotaan ja lopulta asetetaan ui:hin näkyviin tieto muistista
-            for (int i = 0;i< parsed.length;i++) {
-                //sijoitetaan muuttujaan parsettu osuus
-               str=parsed[i];
-               //tarkistetaan että kyseessä on käyttäjän syöte
-               if(str.contains("Muu")) {
-                   //parsetaan tieto siten että jäljelle jää enään pelkät numerot
-                   str2 = str.replace("\"]", "");
-                   str2 = str2.replace("[\"", "");
-                   str2 = str2.replaceAll("[^\\d-]", "");
-                   //ohitetaan päivämäärä jolloin saadaan kalorit
-                   str2 = str2.substring(8);
-                   //mikäli useita syötteitä lasketaan yhteen
-                   sum = sum + Integer.parseInt(str2);
 
-                   //asetetaan poltetut kalorit näkyville UI:hin
-                   EditText editBurnedCalories = findViewById(R.id.et_exercise_goal);
-                   editBurnedCalories.setText(String.valueOf(sum));
-               }
-            }
-
-
-        }
         //ehto jolla tarkastetaan että kyseinen data on tallennettu muistiin
         if (prefs3.getString("paino", null) != null) {
             //asetetaan muistista haettu data muuttujaan käsittelyä varten
