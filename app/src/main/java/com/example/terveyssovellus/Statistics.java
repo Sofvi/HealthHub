@@ -33,7 +33,7 @@ import java.util.List;
 public class Statistics extends AppCompatActivity {
 
     private double weight = 0;
-    private int height = 0;
+    private float height = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,19 +110,19 @@ Kasataan kuvaaja ja asetetaan se näkymään.
         String paino = prefs.getString("paino",                                                     //Haetaan tallennettujen painojen string
                 "0");
         String s1 = paino.substring(paino.indexOf(":") + 1); //thx to ItamarG3 from stackoverflow
-        paino = s1.split(" kg")[0];                                                                 //
+        paino = s1.split(" kg")[0];
 
-        weight = Double.parseDouble(paino);
+        weight = Double.parseDouble(paino);                                                             //Stringistä otetaan uusin paino arvo doubleksi
 
         SharedPreferences prefs2 = getDefaultSharedPreferences(getApplicationContext());
-        height = prefs2.getInt("user_height",
+        height = prefs2.getFloat("user_height",                                                       //Haetaan käyttäjän pituus, joka asetetaan UserSettings activityssä
                 0);
 
-        double bmi = weight / ((double) height / 100) / ((double) height / 100);
-        String bmi2 = String.format("%.2f", bmi);
+        double bmi = weight / ((double) height / 100) / ((double) height / 100);                        //laskukaava BMIlle
+        String bmi2 = String.format("%.2f", bmi);                                                       //Leikataan BMIstä ylimääräiset desimaalit
 
         TextView textView = findViewById(R.id.tv_bmi);
-        textView.setText("Painoindeksi: " + bmi2);
+        textView.setText("Painoindeksi: " + bmi2);                                                      //Asetetaan BMI textViewiin
     }
 
     private void updateFoodChart() {
