@@ -135,15 +135,18 @@ Kasataan kuvaaja ja asetetaan se näkymään.
             Calendar calendar = Calendar.getInstance();
 
             calendar.add(Calendar.DATE, -7 + i);
-            String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());        //Haetaan currenDateKeylle päivämäärä -7+i, joka antaa viikon ajalta
+            String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());        //Haetaan currenDateKeylle päivämäärä -7+i, joka antaa viikon ajalta painot
 
             SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
             int foodCalories = prefs.getInt((currentDateKey),
                     0);
-            entries.add(new BarEntry(i, foodCalories));
+            entries.add(new BarEntry(i, foodCalories));                                             //Lisätään päivittäiset kalorit entries listaan
 
         }
 
+/*
+Kasataan kuvaaja ja asetetaan se näkymään
+ */
         BarDataSet dataSet = new BarDataSet(entries, "Kaloreita syöty");
         BarData data = new BarData(dataSet);
         dataSet.setColor(rgb(39, 78, 41));
@@ -162,7 +165,12 @@ Kasataan kuvaaja ja asetetaan se näkymään.
 
     }
 
+/*
+Asetetaan X akselille päivämäärä viimeiselle arvolle
 
+https://stackoverflow.com/questions/45320457/how-to-set-string-value-of-xaxis-in-mpandroidchart
+Arjun G reply
+ */
     public class DayAxisValueFormatter extends ValueFormatter {
 
         Calendar calendar = Calendar.getInstance();
