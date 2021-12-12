@@ -99,7 +99,7 @@ public class Statistics extends AppCompatActivity {
 
                     //asetetaan poltetut kalorit näkyville UI:hin
                     TextView editBurnedCalories = findViewById(R.id.tv_poltetutkalorit);
-                    editBurnedCalories.setText("Kaloreita poltettu: " + String.valueOf(sum));
+                    editBurnedCalories.setText("Kaloreita tänään poltettu: " + String.valueOf(sum));
                 }
             }
         }
