@@ -82,7 +82,7 @@ public class Weight extends AppCompatActivity {
                 Collections.reverse(weight);
                 //Haetaan päivä+aika
                 Calendar calendar = Calendar.getInstance();
-                //Asetetaan currentDateKey muotoon pp.kk.vvvv, käytetään Keynä sharedPreferensseissä
+                //Asetetaan currentDateKey muotoon pp.kk.vvvv
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
                 //luodaan stringi joka tallennetaan muistiin joka sisältää päivän ja painon arvon
                 String s = currentDate + " Paino: " + et.getText().toString() + " kg";
