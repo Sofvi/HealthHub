@@ -111,6 +111,7 @@ public class Exercise extends AppCompatActivity {
                 String s;
                 if(sel.equals("Muu")){
                      s = currentDate + " liikuntamuoto Muu jossa poltetut kalorit " + et.getText().toString();
+                    et.getText().clear();
                 }
                 else{
                  s = currentDate + " liikuntamuoto " + sel;}
