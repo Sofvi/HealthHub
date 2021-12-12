@@ -33,6 +33,15 @@ public class Exercise extends AppCompatActivity {
     ArrayList<String> exer;
     ArrayAdapter<String> arrayadapter;
     ArrayAdapter<String> arrayadapter2;
+
+    /**
+     * asetetaan näkyviin activity ja haetaan ohjelman kannalta olennaiset osat muistista, sekä asetetaan näkyviin ui:hin, käsitellään dropdown menun valintoja
+     * @author Henri Vuento, Tuomo Muttonen Suvi Laitinen, Eetu Haverinen
+     * @version 12.12.2021
+     * @param savedInstanceState
+     *
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +65,9 @@ public class Exercise extends AppCompatActivity {
                 Exercise.this,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.liikuntamuodot));
+        /**
+         * haetaan muistista sinne tallennetut liikunta suoritukset ja asetetaan näkyviin listanäkymään
+         */
         //määritetään paikka muistista josta haetaan tieto
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
 
@@ -80,7 +92,10 @@ public class Exercise extends AppCompatActivity {
 
             }
         }
-        //tarkkaillaan käyttäjän valintaa dropdown menussa
+        /**
+         * tarkkaillaan käyttäjän valintaa dropdown menussa ja näytetään tai piilotetaan elementtejä sen mukaan, lisäksi tallennetaan valinta muuttujan
+         */
+        //
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         liikunnatDropdown.setAdapter(arrayAdapter);
         liikunnatDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -108,7 +123,11 @@ public class Exercise extends AppCompatActivity {
 
         onClick();
     }
-    //reakoidaan napin painoon
+
+    /**
+     * Reakoidaan napin painalluukseen ja tallennetaan tietoa puhelimen muistiin
+     */
+
     public void onClick() {
         nappi.setOnClickListener(new View.OnClickListener() {
             @Override
