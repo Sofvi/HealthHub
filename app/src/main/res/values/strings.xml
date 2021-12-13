@@ -22,6 +22,10 @@
     <string name="lis_uusi_liikuntasuoritus">Lisää uusi liikuntasuoritus</string>
     <string name="lis">Lisää</string>
     <string name="todo">TODO</string>
+    <string name="omat_tiedot1">Omat tiedot</string>
+    <string name="paino_kg">Paino (kg)</string>
+    <string name="pituus_cm">Pituus (cm)</string>
+    <string name="kaloritavoite_ruualle">Kaloritavoite ruualle</string>
 
     <string-array name="liikuntamuodot">
         <item>Juoksu (puoli tuntia) 300 kcal</item>
