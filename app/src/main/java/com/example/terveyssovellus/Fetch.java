@@ -4,6 +4,11 @@ import android.content.SharedPreferences;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+/**
+ * Luokka on tiedonkäsittelyä varten
+ * @author Eetu Haverinen
+ * @version 13.12.2021
+ */
 
 public class Fetch {
     private SharedPreferences prefs;
@@ -12,6 +17,9 @@ public class Fetch {
         this.prefs=pref;
     }
     public String fetchWeightList(){
+        /** tarkistetaan, että muistissa on tallennettua tietoa
+         * parsetaan Stringistä erikoismerkit
+         * */
         String jsonText = this.prefs.getString("paino", null);
         if (prefs.getString("paino", null) != null) {                                       //ehtolause jolla tarkastetaan että muistissa on tallennettu tietoa
             String yett = jsonText.replace("\\", "");                                   //parsetaan stringistä pois kaikki erikoismerkit
@@ -22,8 +30,11 @@ public class Fetch {
         return jsonText;
     }
     public double fetchWeight(){
+/** haettu data asetetaan muuttujaan käsittelyä varten
+ * muistista haettu Stringi pilkotaan pelkiksi painon numeroiksi
+ * */
         double weight = 0;
-        String paino = this.prefs.getString("paino", "0");                                  //asetetaan muistista haettu data muuttujaan käsittelyä varten
+        String paino = this.prefs.getString("paino", "0");
         String s1 = paino.substring(paino.indexOf(":") + 1);                                          //pilkotaan muistista haetusta Stringistä pelkkä paino numerona
         paino = s1.replace(" kg", "");
         s1 = paino.replace("\"]", "");
@@ -40,6 +51,9 @@ public class Fetch {
         return calories_goal;
     }
     public String fetchExercise(){
+        /** poistetaan Stringistä erikoismerkit
+         * parsetaan Stringi
+         * */
         if(prefs.getString("e" + date(), null)!=null) {
             String jsonText = prefs.getString("e" + date(), null);
             String yett = jsonText.replace("\\", "");                                    //poistetaan stringistä erikoismerkkit ja parsetaan stringi
@@ -55,7 +69,7 @@ public class Fetch {
         return foodCalories;
     }
     private String date(){
-        Calendar calendar = Calendar.getInstance();                                                         //Haetaan päivä+aika
+        Calendar calendar = Calendar.getInstance();                                                         //Haetaan päivä ja aika
         String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());
         return currentDateKey;
     }
