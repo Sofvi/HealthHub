@@ -156,8 +156,12 @@ public class UserSettings extends AppCompatActivity {
          * Tallennetaan käyttäjän syöttämä pituus muistiin
          */
         Toast.makeText(getApplicationContext(),"Pituus asetettu.", Toast.LENGTH_SHORT).show();      //ilmoitetaan käyttäjälle että pituus on asetettu
-        EditText editText = findViewById(R.id.et_height);                                               //haetaan ui elementti idellä ja tallennetaan muuttujaan
-        float n = Float.parseFloat(editText.getText().toString());                                      //tallennetaan käyttäjän syöte muistiin
+        EditText editText = findViewById(R.id.et_height);
+          String temp= editText.getText().toString();                                                                                           //haetaan ui elementti idellä ja tallennetaan muuttujaan
+        if (temp.contains(",")) {                                                                          //tarkastetaan käyttäjän syöte
+            temp = temp.replace(",", ".");                                                    //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
+        }
+        float n = Float.parseFloat(temp);                                      //tallennetaan käyttäjän syöte muistiin
 
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());                 //Valitaan muistipaikka johon tallennetaan
         SharedPreferences.Editor editor = prefs.edit();
