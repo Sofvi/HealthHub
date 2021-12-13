@@ -27,7 +27,7 @@ import java.util.Collections;
 
 /**
  * Luokka on liikunnan lisäyksen näyttö
- * @author Henri Vuento, Tuomo Muttonen Suvi Laitinen, Eetu Haverinen
+ * @author Henri Vuento
  * @version 12.12.2021
  */
 public class Exercise extends AppCompatActivity {

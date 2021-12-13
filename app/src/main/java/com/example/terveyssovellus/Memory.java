@@ -13,7 +13,7 @@ import java.util.Calendar;
 /**
  * Luokka on tiedonkäsittelyä varten
  * @author Suvi Laitinen
- * @version 12.12.2021
+ * @version 13.12.2021
  */
 
     public class Memory {

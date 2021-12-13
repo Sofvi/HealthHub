@@ -26,7 +26,7 @@ import java.util.List;
 
 /**
  * Luokka on painonlisäystä varten
- * @author Suvi Laitinen, Henri Vuento, Tuomo Muttonen, Eetu Haverinen
+ * @author Henri Vuento
  * @version 12.12.2021
  */
 
