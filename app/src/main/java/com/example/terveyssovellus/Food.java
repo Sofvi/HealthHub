@@ -17,6 +17,7 @@ import java.util.Calendar;
 
 /**
  * Luokka on Kalorilaskurin näyttö
+ *
  * @author Tuomo Muttonen, Suvi Laitinen, Henri Vuento, Eetu Haverinen
  * @version 12.12.2021
  */
@@ -26,7 +27,6 @@ public class Food extends AppCompatActivity {
     private int foodCalories = 0;                                                                       //muuttuja syödyille kaloreille
     Calendar calendar = Calendar.getInstance();                                                         //Haetaan päivä+aika
     String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());                    //Asetetaan currentDateKey muotoon pp.kk.vvvv, käytetään Keynä sharedPreferensseissä
-
 
 
     @Override
@@ -59,8 +59,7 @@ public class Food extends AppCompatActivity {
     }
 
 
-
-    public void updateFoodCalories(View view){                                                          //Kutsutaan "Lisää" nappulaa painettaessa
+    public void updateFoodCalories(View view) {                                                          //Kutsutaan "Lisää" nappulaa painettaessa
         /**
          * Kutsutaan Food.java "Lisää" nappia painettaessa
          * Lisää käyttäjän syöttämät kalorit edellisiin kaloreihin
@@ -70,21 +69,29 @@ public class Food extends AppCompatActivity {
          */
 
         EditText editText = findViewById(R.id.editTxFoodCalories);
-        int n = Integer.parseInt(editText.getText().toString());                                        //Otetaan käyttäjän syöttämä luku editTextistä
-        foodCalories = foodCalories+n;                                                                  //Päivitetään syötyihin kaloreihin editTextissä syötetyt uudet
-        TextView textView = findViewById(R.id.total_food_calories);
-        textView.setText(String.valueOf(foodCalories));                                                 //Päivitetään syödyt kalorit textViewiin
-        Toast.makeText(getApplicationContext(),n + " Kaloria lisätty.", Toast.LENGTH_SHORT).show(); //Annetaan toast, käyttäjä saa ilmoituksen lisäyksestä
-        editText.getText().clear();                                                                     //tyhjennetään editText kenttä
+        String temp = editText.getText().toString();                                                    //haetaan ui elementti idellä ja tallennetaan muuttujaan
+        if (temp.contains(",") || (temp.contains("."))) {                                               //tarkastetaan käyttäjän syöte
+            editText.getText().clear();
+            Toast.makeText(getApplicationContext(), "Syötä kokonaisluku", Toast.LENGTH_SHORT).show();
+        } else {
+            int n = Integer.parseInt(editText.getText().toString());                                        //tallennetaan käyttäjän syöte muistiin
 
-        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(currentDateKey, foodCalories);                                                    //Tallennetaan kalorit muistiin, Keynä käytetään päivämäärää
-        editor.commit();
+            Toast.makeText(getApplicationContext(), "Päivittäinen kaloritavoite asetettu.", Toast.LENGTH_SHORT).show();  //Ilmoitetaan käyttäjälle onnistunut tapahtuma
 
-        ProgressBar progressBar = findViewById(R.id.food_progressBar);
-        progressBar.setProgress(foodCalories);                                                          //Päivitetään progressbar
+            foodCalories = foodCalories + n;                                                                  //Päivitetään syötyihin kaloreihin editTextissä syötetyt uudet
+            TextView textView = findViewById(R.id.total_food_calories);
+            textView.setText(String.valueOf(foodCalories));                                                 //Päivitetään syödyt kalorit textViewiin
+            Toast.makeText(getApplicationContext(), n + " Kaloria lisätty.", Toast.LENGTH_SHORT).show(); //Annetaan toast, käyttäjä saa ilmoituksen lisäyksestä
+            editText.getText().clear();                                                                     //tyhjennetään editText kenttä
+
+            SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt(currentDateKey, foodCalories);                                                    //Tallennetaan kalorit muistiin, Keynä käytetään päivämäärää
+            editor.commit();
+
+            ProgressBar progressBar = findViewById(R.id.food_progressBar);
+            progressBar.setProgress(foodCalories);                                                          //Päivitetään progressbar
+        }
     }
-
 
 }

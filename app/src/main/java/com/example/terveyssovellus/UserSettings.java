@@ -20,14 +20,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Scanner;
+
 /**
  * Luokka on käyttäjän asetuksien näyttö
+ *
  * @author Suvi Laitinen, Henri Vuento, Tuomo Muttonen, Eetu Haverinen
  * @version 12.12.2021
  */
 public class UserSettings extends AppCompatActivity {
 
     private double weight = 0;                                                                          //muuttuja painolle
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         /**
@@ -47,9 +50,9 @@ public class UserSettings extends AppCompatActivity {
 
         if (prefs3.getString("paino", null) != null) {                                      //ehto jolla tarkastetaan että kyseinen data on tallennettu muistiin
             String paino = prefs3.getString("paino", "0");                                  //asetetaan muistista haettu data muuttujaan käsittelyä varten
-            String s1 = paino.substring(paino.indexOf(":")+1);                                          //pilkotaan muistista haetusta Stringistä pelkkä paino numerona
-            paino = s1.replace(" kg","");
-            s1 = paino.replace("\"]","");
+            String s1 = paino.substring(paino.indexOf(":") + 1);                                          //pilkotaan muistista haetusta Stringistä pelkkä paino numerona
+            paino = s1.replace(" kg", "");
+            s1 = paino.replace("\"]", "");
             paino = s1.split("\"")[0];
             weight = Double.parseDouble(paino);
 
@@ -58,14 +61,10 @@ public class UserSettings extends AppCompatActivity {
         /**
          * tarkkailee millon käyttäjä on syöttänyt kenttään päivittäisen kaloritavoitteen ja reagoi entterin painallukseen suorittamalla changeUserFood funktion
          */
-        editFood.setOnKeyListener(new View.OnKeyListener()
-        {
-            public boolean onKey(View v, int keyCode, KeyEvent event)
-            {
-                if (event.getAction() == KeyEvent.ACTION_DOWN)
-                {
-                    switch (keyCode)
-                    {
+        editFood.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
                             changeUserFood();                                                           //funktio kutsu jossa tallennetaan datan ja asetetaan se näkyville
@@ -84,12 +83,9 @@ public class UserSettings extends AppCompatActivity {
         EditText editHeight = findViewById(R.id.et_height);                                             //määritetään ui elementti muuttujaan
         editHeight.setOnKeyListener(new View.OnKeyListener()                                            //tarkkaillaan millon käyttäjä on syöttänyt uuden pituuden ja reakoidaan entterin painallukseen
         {
-            public boolean onKey(View v, int keyCode, KeyEvent event)
-            {
-                if (event.getAction() == KeyEvent.ACTION_DOWN)
-                {
-                    switch (keyCode)
-                    {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
                             changeUserHeight();                                                         //funktio kutsu jossa tallennetaan datan ja asetetaan se näkyville
@@ -107,12 +103,9 @@ public class UserSettings extends AppCompatActivity {
 
         editWeight.setOnKeyListener(new View.OnKeyListener()                                            //tarkkaillaan millon käyttäjä on syöttänyt uuden painolukeman ja reagoidaan entterin painallukseen
         {
-            public boolean onKey(View v, int keyCode, KeyEvent event)
-            {
-                if (event.getAction() == KeyEvent.ACTION_DOWN)
-                {
-                    switch (keyCode)
-                    {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
                             changeUserWeight();                                                         //tallennetaan paino muistiin ja asetetaan näkyville
@@ -136,32 +129,38 @@ public class UserSettings extends AppCompatActivity {
         textView2.setText(String.valueOf(user_height));                                                 //asetetaan pituus näkyville ui:hin
     }
 
-    public void changeUserFood(){                                                                       //funktio jolla tallennetaan muistiin kaloritavoite
+    public void changeUserFood() {                                                                       //funktio jolla tallennetaan muistiin kaloritavoite
         /**
          * Tallennetaan käyttäjän syöttämä päivittäinen kaloritavoite muistiin
          */
-        Toast.makeText(getApplicationContext(),"Päivittäinen kaloritavoite asetettu.", Toast.LENGTH_SHORT).show();  //ilmoitetetaan käyttäjälle että kalori tavoite on asetettu
+        //ilmoitetetaan käyttäjälle että kalori tavoite on asetettu
         EditText editText = findViewById(R.id.et_food_goal);                                            //haetaan ui elementti id:llä ja asetetaan muuttujaan
-        int n = Integer.parseInt(editText.getText().toString());                                        //luodaan muuttuja jonka arvoksi asetetaan käyttäjän syöttämä arvo
+        String temp = editText.getText().toString();                                                    //haetaan ui elementti idellä ja tallennetaan muuttujaan
+        if (temp.contains(",") || (temp.contains("."))) {                                               //tarkastetaan käyttäjän syöte
+            editText.getText().clear();
+            Toast.makeText(getApplicationContext(), "Syötä kokonaisluku", Toast.LENGTH_SHORT).show();
+        } else {
+            int n = Integer.parseInt(editText.getText().toString());                                        //tallennetaan käyttäjän syöte muistiin
+            SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());                 //asetetaan muistipaikka johon halutaan tallentaa tieto
+            SharedPreferences.Editor editor = prefs.edit();
 
-        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());                 //asetetaan muistipaikka johon halutaan tallentaa tieto
-        SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putInt("user_food_goal", n);                                                             //tallennetaan muistiin kaloritavoite
-        editor.commit();
+            editor.putInt("user_food_goal", n);                                                             //tallennetaan muistiin kaloritavoite
+            editor.commit();
+            Toast.makeText(getApplicationContext(), "Päivittäinen kaloritavoite asetettu.", Toast.LENGTH_SHORT).show();  //Ilmoitetaan käyttäjälle onnistunut tapahtuma
+        }
     }
 
-    public void changeUserHeight(){                                                                      //funktio pituuden tallentamista muistiin varten
+    public void changeUserHeight() {                                                                      //funktio pituuden tallentamista muistiin varten
         /**
          * Tallennetaan käyttäjän syöttämä pituus muistiin
          */
-        Toast.makeText(getApplicationContext(),"Pituus asetettu.", Toast.LENGTH_SHORT).show();      //ilmoitetaan käyttäjälle että pituus on asetettu
+        Toast.makeText(getApplicationContext(), "Pituus asetettu.", Toast.LENGTH_SHORT).show();      //ilmoitetaan käyttäjälle että pituus on asetettu
         EditText editText = findViewById(R.id.et_height);
-          String temp= editText.getText().toString();                                                                                           //haetaan ui elementti idellä ja tallennetaan muuttujaan
+        String temp = editText.getText().toString();                                                                                           //haetaan ui elementti idellä ja tallennetaan muuttujaan
         if (temp.contains(",")) {                                                                          //tarkastetaan käyttäjän syöte
             temp = temp.replace(",", ".");                                                    //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
         }
-        float n = Float.parseFloat(temp);                                      //tallennetaan käyttäjän syöte muistiin
+        float n = Float.parseFloat(temp);                                                              //tallennetaan käyttäjän syöte muistiin
 
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());                 //Valitaan muistipaikka johon tallennetaan
         SharedPreferences.Editor editor = prefs.edit();
@@ -170,7 +169,7 @@ public class UserSettings extends AppCompatActivity {
         editor.commit();
     }
 
-    public void changeUserWeight(){                                                                     //funktio jolla tallennetaan käyttäjän paino muistiin
+    public void changeUserWeight() {                                                                     //funktio jolla tallennetaan käyttäjän paino muistiin
         /**
          *
          * Tallennetaan käyttäjän syöttämä paino muistiin
@@ -179,7 +178,7 @@ public class UserSettings extends AppCompatActivity {
         weight = new ArrayList<String>();
         EditText editWeight = findViewById(R.id.et_weight);                                             //haetaan ui elementti id:llä
 
-        Toast.makeText(getApplicationContext(),"Paino asetettu.", Toast.LENGTH_SHORT).show();      //ilmoitetaan käyttäjälle että paino on tallenettu
+        Toast.makeText(getApplicationContext(), "Paino asetettu.", Toast.LENGTH_SHORT).show();      //ilmoitetaan käyttäjälle että paino on tallenettu
         Collections.reverse(weight);                                                                    //käännetään arraylist jotta uusin syöte olisi ensimmäisenä
 
         Calendar calendar = Calendar.getInstance();                                                     //Haetaan päivä+aika
