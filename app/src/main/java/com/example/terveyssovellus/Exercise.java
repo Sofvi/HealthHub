@@ -39,7 +39,10 @@ public class Exercise extends AppCompatActivity {
     ArrayAdapter<String> arrayadapter2;
 
     /**
-     * asetetaan näkyviin activity ja haetaan ohjelman kannalta olennaiset osat muistista, sekä asetetaan näkyviin ui:hin, käsitellään dropdown menun valintoja
+     * asetetaan näkyviin activity
+     * haetaan ohjelman kannalta olennaiset osat muistista
+     * asetetaan näkyviin ui:hin
+     * käsitellään dropdown menun valintoja
      */
 
     @Override
@@ -66,7 +69,8 @@ public class Exercise extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.liikuntamuodot));
         /**
-         * haetaan muistista sinne tallennetut liikunta suoritukset ja asetetaan näkyviin listanäkymään
+         * haetaan muistista sinne tallennetut liikunta suoritukset
+         * asetetaan näkyviin listanäkymään
          */
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
 
@@ -88,10 +92,10 @@ public class Exercise extends AppCompatActivity {
             }
         }
         /**
-         * tarkkaillaan käyttäjän valintaa dropdown menussa ja näytetään tai piilotetaan elementtejä sen mukaan
-         * lisäksi tallennetaan valinta muuttujana
+         * tarkkaillaan käyttäjän valintaa dropdown menussa
+         * näytetään tai piilotetaan elementtejä
+         * tallennetaan valinta muuttujana
          */
-        //
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         liikunnatDropdown.setAdapter(arrayAdapter);
         liikunnatDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

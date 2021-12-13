@@ -10,10 +10,14 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * Luokka on tiedonkäsittelyä varten
+ * @author Suvi Laitinen
+ * @version 12.12.2021
+ */
+
     public class Memory {
         private SharedPreferences prefs;
-
-
 
         public Memory(SharedPreferences pref){
             this.prefs=pref;
@@ -26,25 +30,31 @@ import java.util.Calendar;
             editor.apply();
         }
         public String verify(String s){
+            /** tarkastetaan käyttäjän syöte
+             * vaihdetaan pilkku pisteeseen, estäen parsen ongelmat
+             * */
             String s1 =s;
-            if (s1.contains(",")) {                                                                     //tarkastetaan käyttäjän syöte
-                s1 = s.replace(",", ".");                                               //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
+            if (s1.contains(",")) {
+                s1 = s1.replace(",", ".");
             }
             if(s1.contains(" ")) {
-                s1 = s.replace(" ", "");
+                s1 = s1.replace(" ", "");
             }
             return s1;
         }
         public String verifyCal(String s){
+            /** tarkastetaan käyttäjän syöte
+             * vaihdetaan pilkku pisteeseen, estäen parsen ongelmat
+             * */
             String s1 =s;
-            if (s1.contains(",")) {                                                                     //tarkastetaan käyttäjän syöte
-                s1 = s.replace(",", "");                                                //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
+            if (s1.contains(",")) {
+                s1 = s1.replace(",", "");
             }
-            if (s1.contains(".")) {                                                                     //tarkastetaan käyttäjän syöte
-                s1 = s.replace(".", "");                                                //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
+            if (s1.contains(".")) {
+                s1 = s1.replace(".", "");
             }
             if(s1.contains(" ")) {
-                s1 = s.replace(" ", "");
+                s1 = s1.replace(" ", "");
             }
             return s1;
         }
@@ -68,15 +78,18 @@ import java.util.Calendar;
             editor.commit();
         }
         public void saveExercise(ArrayList<String>exer){
+            /** käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon
+             * tallennetaan tieto json muodossa muistiin
+             * */
             SharedPreferences.Editor editor = prefs.edit();
-            Gson gson = new Gson();                                                                     //** käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon
+            Gson gson = new Gson();
             String json = gson.toJson(exer);
-            editor.putString("e"+date(), json);                                                         //** tallennetaan tieto jsno muodossa muistiin
+            editor.putString("e"+date(), json);
             editor.apply();
 
         }
         public String date(){
-            Calendar calendar = Calendar.getInstance();                                                 //Haetaan päivä+aika
+            Calendar calendar = Calendar.getInstance();                                                 //haetaan päivä + aika
             String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());
             return currentDateKey;
         }
