@@ -103,7 +103,12 @@ public class Statistics extends AppCompatActivity {
                     str2 = str2.replace("[\"", "");
                     str2 = str2.replaceAll("[^\\d-]", "");
                     //ohitetaan päivämäärä jolloin saadaan kalorit
-                    str2 = str2.substring(8);
+                        if(currentDate.length()<10){
+                            int yeet=10-currentDate.length();
+                            str2=str2.substring(8-yeet);
+                        }else {
+                            str2 = str2.substring(8);
+                        }
                     //mikäli useita syötteitä lasketaan yhteen
                     sum = sum + Integer.parseInt(str2);
 
