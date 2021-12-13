@@ -24,7 +24,7 @@ import java.util.Scanner;
 /**
  * Luokka on käyttäjän asetuksien näyttö
  *
- * @author Suvi Laitinen, Henri Vuento, Tuomo Muttonen, Eetu Haverinen
+ * @author Henri Vuento, Tuomo Muttonen
  * @version 12.12.2021
  */
 public class UserSettings extends AppCompatActivity {

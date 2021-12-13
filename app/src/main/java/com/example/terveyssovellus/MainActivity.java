@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 /**
  * Luokka on sovelluksen aloitusnäyttö
- * @author Suvi Laitinen, Henri Vuento, Tuomo Muttonen, Eetu Haverinen
+ * @author Suvi Laitinen
  * @version 12.12.2021
  */
 
