@@ -40,12 +40,15 @@ public class Fetch {
         return calories_goal;
     }
     public String fetchExercise(){
-        String jsonText = prefs.getString("e"+date(), null);
-        String yett= jsonText.replace("\\", "");                                    //poistetaan stringistä erikoismerkkit ja parsetaan stringi
-        jsonText= yett.replace("[","");
-        yett = jsonText.replace("\"","");
-        jsonText= yett.replace("]","");
-        return jsonText;
+        if(prefs.getString("e" + date(), null)!=null) {
+            String jsonText = prefs.getString("e" + date(), null);
+            String yett = jsonText.replace("\\", "");                                    //poistetaan stringistä erikoismerkkit ja parsetaan stringi
+            jsonText = yett.replace("[", "");
+            yett = jsonText.replace("\"", "");
+            jsonText = yett.replace("]", "");
+            return jsonText;
+        }
+        return null;
     }
     public int fetchDailyCalories(){
         int foodCalories = prefs.getInt(date(),0);
