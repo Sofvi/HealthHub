@@ -133,7 +133,7 @@ public class Exercise extends AppCompatActivity {
                  s = save.date() + " " + sel;
                 }
 
-                exer.add(save.verifyCal(s));                                                                            //tallennetaan stringi arraylistiin
+                exer.add(s);                                                                            //tallennetaan stringi arraylistiin
                 arrayadapter2.notifyDataSetChanged();                                                   //päivitetään lista näkymä uudella tiedolla
                 save.saveExercise(exer);
 
