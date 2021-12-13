@@ -52,7 +52,7 @@ public class Exercise extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         nappi = findViewById(R.id.esub);
         elv = findViewById(R.id.exerciseList);
-
+        Fetch fetch =new Fetch(getDefaultSharedPreferences(getApplicationContext()));
         exer = new ArrayList<String>();                                                                 //** luodaan arraylist sekä adapter jolla saadaan arraylist sisältö lista näkymään
         et = findViewById(R.id.editTxexercise);
         TextView tv_kalorit = findViewById(R.id.textView13);
@@ -72,18 +72,9 @@ public class Exercise extends AppCompatActivity {
          * haetaan muistista sinne tallennetut liikunta suoritukset
          * asetetaan näkyviin listanäkymään
          */
-        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
 
-        Calendar calendar = Calendar.getInstance();                                                     //Haetaan päivä+aika
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());                   //Asetetaan currentDateKey muotoon pp.kk.vvvv
-        String jsonText = prefs.getString("e"+currentDate, null);                           //asetetaan muistista haettu arvo muuttujaan
-
-        if (prefs.getString("e"+currentDate, null)!=null) {                                 //tarkastetaan että muistiin on tallennettu tietoa
-            String yett= jsonText.replace("\\", "");                                    //poistetaan stringistä erikoismerkkit ja parsetaan stringi
-            jsonText= yett.replace("[","");
-            yett = jsonText.replace("\"","");
-            jsonText= yett.replace("]","");
-            String[] parsed = jsonText.split(",");
+        if (fetch.fetchExercise()!=null) {                                 //tarkastetaan että muistiin on tallennettu tietoa
+            String[] parsed = fetch.fetchExercise().split(",");
 
             for (int i=0;i<parsed.length;i++) {                                                         //lisätään parsetut stringit arraylistin
 
@@ -131,33 +122,20 @@ public class Exercise extends AppCompatActivity {
         nappi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();                                             //Haetaan päivä+aika
-                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());           //Asetetaan currentDateKey muotoon pp.kk.vvvv
+                Memory save =new Memory(getDefaultSharedPreferences(getApplicationContext()));
                 String s;
 
                 if(sel.equals("Muu")){                                                                  // muotoillaan tallennettava stringi sen mukaan että mitä käyttäjä on valinnut
-                     s = currentDate + " Muu jossa poltetut kalorit " + et.getText().toString();        //jos valinta "Muu" niin tallennetaan käyttäjän antamat kalorit
+                     s = save.date() + " Muu jossa poltetut kalorit " + et.getText().toString();        //jos valinta "Muu" niin tallennetaan käyttäjän antamat kalorit
                     et.getText().clear();
                 }
                 else{                                                                                   //muutoin tallennetaan listasta valittu kohta ja kalorit sen mukaan
-                 s = currentDate + " " + sel;
+                 s = save.date() + " " + sel;
                 }
 
-                if (s.contains(",")) {                                                                  //tarkistetaan käyttäjän syöte siltä varalta että siinä olisi pilkkuja ja korvataan ne pisteellä
-                    s = s.replace(",", ".");                                            //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
-                }
-
-                exer.add(s);                                                                            //tallennetaan stringi arraylistiin
+                exer.add(save.verifyCal(s));                                                                            //tallennetaan stringi arraylistiin
                 arrayadapter2.notifyDataSetChanged();                                                   //päivitetään lista näkymä uudella tiedolla
-
-                SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());         //valitaan paikka muistista johon tallennetaan
-                SharedPreferences.Editor editor = prefs.edit();
-
-                Gson gson = new Gson();                                                                 //** käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon
-                String json = gson.toJson(exer);
-
-                editor.putString("e"+currentDate, json);                                                //** tallennetaan tieto jsno muodossa muistiin
-                editor.apply();
+                save.saveExercise(exer);
 
                 Toast.makeText(getApplicationContext(),sel + " lisätty.", Toast.LENGTH_SHORT).show();   //ilmoitetaan käyttäjälle että suoritus on lisätty
             }
