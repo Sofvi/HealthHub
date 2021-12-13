@@ -48,7 +48,7 @@ import java.util.List;
 
 /**
  * Luokka on Seuranta sivun näyttö
- * @author Tuomo Muttonen, Suvi Laitinen, Henri Vuento, Eetu Haverinen
+ * @author Tuomo Muttonen
  * @version 12.12.2021
  */
 
