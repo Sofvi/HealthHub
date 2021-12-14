@@ -44,15 +44,11 @@ public class Weight extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        /** haetaan tieto muistista ja tallennetaan muuttujaan*/
-        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-        String jsonText = prefs.getString("paino", null);
-
         et = findViewById(R.id.editTxWeight);                                                           //haetaan elementit id:ellä koodista
         bt = findViewById(R.id.button);
         lv = findViewById(R.id.weightListview);
-
+        Fetch fetch =new Fetch(getDefaultSharedPreferences(getApplicationContext()));
+        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         /**luodaan arraylist ja adapteri jolla saadaan arraylistin sisältö listanäkymään*/
         weight = new ArrayList<String>();
         arrayadapter = new ArrayAdapter<String>(
@@ -62,34 +58,25 @@ public class Weight extends AppCompatActivity {
         lv.setAdapter(arrayadapter);
 
         if (prefs.getString("paino", null) != null) {                                       //ehtolause jolla tarkastetaan että muistissa on tallennettu tietoa
-            String yett = jsonText.replace("\\", "");                                   //parsetaan stringistä pois kaikki erikoismerkit
-            jsonText = yett.replace("[", "");
-            yett = jsonText.replace("\"", "");
-            jsonText = yett.replace("]", "");
-
             /**
              * Tallennetaan parsetut osat
              * Loop jossa käydään läpi array johon tieto on tallennettu ja tallennetaan se arraylistin
              * */
-            String[] parsed = jsonText.split(",");
+            String[] parsed = fetch.fetchWeightList().split(",");
             for (int i = 0; i < parsed.length; i++) {
-
                 weight.add(parsed[i]);
-
             }
         }
         onClick();
-
     }
 
     public void onClick() {                                                                             //reagoidaan napin painallukseen kun käyttäjä haluaa tallentaa tietoa
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Memory save =new Memory(getDefaultSharedPreferences(getApplicationContext()));
                 Collections.reverse(weight);                                                            //käännettään arraylist jotta uusin tieto on ensimmäisenä
-                Calendar calendar = Calendar.getInstance();                                             //Haetaan päivä+aika
-                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());           //Asetetaan currentDateKey muotoon pp.kk.vvvv, käytetään Keynä sharedPreferensseissä
-                String s = currentDate + " Paino: " + et.getText().toString() + " kg";                  //luodaan stringi joka tallennetaan muistiin joka sisältää päivän ja painon arvon
+                String s = save.date() + " Paino: " + et.getText().toString() + " kg";                  //luodaan stringi joka tallennetaan muistiin joka sisältää päivän ja painon arvon
 
                 if (s.contains(",")) {                                                                  //tarkastetaan käyttäjän syöte
                     s = s.replace(",", ".");                                            //vaihdetaan pilkku pisteeseen jolloin estetään ongelmat parsen suhteen
@@ -97,26 +84,11 @@ public class Weight extends AppCompatActivity {
                 weight.add(s);                                                                          //tallennetaan tieto arraylistiin
                 Collections.reverse(weight);                                                            //käännettään arraylist jotta uusin tieto näkyy ensimmäisenä
                 arrayadapter.notifyDataSetChanged();                                                    //päivitetään lista näkymä uudella tiedolla
-
-                /**
-                 * Valitaan paikka muistista johon tieto tallennetaan
-                 * Käytetään gson kirjastoa jotta saadaan muutettua java objekti json muotoon
-                 * Tallennetaan tieto jsno muodossa muistiin
-                 * Tyhjennettään syöttö kenttä
-                 * */
-                SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = prefs.edit();
-
-                Gson gson = new Gson();
-                String json = gson.toJson(weight);
-                editor.putString("paino", json);
-                editor.apply();
-
+                save.saveWeight(weight);
                 et = findViewById(R.id.editTxWeight);
                 et.getText().clear();
 
             }
-
 
         });
 
