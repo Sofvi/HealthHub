@@ -31,13 +31,13 @@ public class UserSettings extends AppCompatActivity {
 
     private double weight = 0;                                                                          //muuttuja painolle
 
+    /**
+     * Hakee kaloritavoitteen muistista ja asettaa sen textViewiin
+     * Hakee painon muistista ja asettaa sen textViewiin
+     * Hakee pituuden muistista ja asettaa sen textViewiin
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /**
-         * Hakee kaloritavoitteen muistista ja asettaa sen textViewiin
-         * Hakee painon muistista ja asettaa sen textViewiin
-         * Hakee pituuden muistista ja asettaa sen textViewiin
-         */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -50,10 +50,12 @@ public class UserSettings extends AppCompatActivity {
 
         if (prefs3.getString("paino", null) != null) {                                      //ehto jolla tarkastetaan että kyseinen data on tallennettu muistiin
 
-            editWeight.setText(String.valueOf(fetch.fetchWeight()));                                                 //asetetaan paino näkyville ui:hin
+            editWeight.setText(String.valueOf(fetch.fetchWeight()));                                     //asetetaan paino näkyville ui:hin
         }
+
         /**
-         * tarkkailee millon käyttäjä on syöttänyt kenttään päivittäisen kaloritavoitteen ja reagoi entterin painallukseen suorittamalla changeUserFood funktion
+         * tarkkailee millon käyttäjä on syöttänyt kenttään päivittäisen kaloritavoitteen
+         * reagoi entterin painallukseen suorittamalla changeUserFood funktion
          */
         editFood.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -70,10 +72,11 @@ public class UserSettings extends AppCompatActivity {
                 return false;
             }
         });
-        /**
-         * tarkkailee millon käyttäjä on syöttänyt kenttään pituuden ja reagoi entterin painallukseen suorittamalla changeUserHeight funktion
-         */
 
+        /**
+         * tarkkailee millon käyttäjä on syöttänyt kenttään pituuden
+         * reagoi entterin painallukseen suorittamalla changeUserHeight funktion
+         */
         EditText editHeight = findViewById(R.id.et_height);                                             //määritetään ui elementti muuttujaan
         editHeight.setOnKeyListener(new View.OnKeyListener()                                            //tarkkaillaan millon käyttäjä on syöttänyt uuden pituuden ja reakoidaan entterin painallukseen
         {
@@ -91,10 +94,10 @@ public class UserSettings extends AppCompatActivity {
                 return false;
             }
         });
+
         /**
          * tarkkailee millon käyttäjä on syöttänyt kenttään painon ja reagoi entterin painallukseen suorittamalla changeUserWeight funktion
          */
-
         editWeight.setOnKeyListener(new View.OnKeyListener()                                            //tarkkaillaan millon käyttäjä on syöttänyt uuden painolukeman ja reagoidaan entterin painallukseen
         {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -113,16 +116,16 @@ public class UserSettings extends AppCompatActivity {
         });
 
         TextView textView = findViewById(R.id.et_food_goal);                                            //haetaan elemennti ui:sta id:llä ja lisätään muuttujaan
-        textView.setText(String.valueOf(fetch.fetchCalories_goal()));                                                //asetetaan elemmenttiin uusi arvo
+        textView.setText(String.valueOf(fetch.fetchCalories_goal()));                                   //asetetaan elemmenttiin uusi arvo
 
         TextView textView2 = findViewById(R.id.et_height);                                              //haetaan elemennti ui:sta id:llä ja lisätään muuttujaan
-        textView2.setText(String.valueOf(fetch.fetchHeight()));                                                 //asetetaan pituus näkyville ui:hin
+        textView2.setText(String.valueOf(fetch.fetchHeight()));                                         //asetetaan pituus näkyville ui:hin
     }
 
+    /**
+     * Tallennetaan käyttäjän syöttämä päivittäinen kaloritavoite muistiin
+     */
     public void changeUserFood() {                                                                       //funktio jolla tallennetaan muistiin kaloritavoite
-        /**
-         * Tallennetaan käyttäjän syöttämä päivittäinen kaloritavoite muistiin
-         */
         Memory save =new Memory(getDefaultSharedPreferences(getApplicationContext()));
         EditText editText = findViewById(R.id.et_food_goal);                                            //haetaan ui elementti id:llä ja asetetaan muuttujaan
         String temp = editText.getText().toString();                                                    //haetaan ui elementti idellä ja tallennetaan muuttujaan
@@ -135,10 +138,10 @@ public class UserSettings extends AppCompatActivity {
         }
     }
 
+    /**
+     * Tallennetaan käyttäjän syöttämä pituus muistiin
+     */
     public void changeUserHeight() {                                                                      //funktio pituuden tallentamista muistiin varten
-        /**
-         * Tallennetaan käyttäjän syöttämä pituus muistiin
-         */
         Memory save =new Memory(getDefaultSharedPreferences(getApplicationContext()));
         Toast.makeText(getApplicationContext(), "Pituus asetettu.", Toast.LENGTH_SHORT).show();      //ilmoitetaan käyttäjälle että pituus on asetettu
         EditText editText = findViewById(R.id.et_height);
@@ -147,11 +150,10 @@ public class UserSettings extends AppCompatActivity {
 
     }
 
+    /**
+     * Tallennetaan käyttäjän syöttämä paino muistiin
+     */
     public void changeUserWeight() {                                                                     //funktio jolla tallennetaan käyttäjän paino muistiin
-        /**
-         *
-         * Tallennetaan käyttäjän syöttämä paino muistiin
-         */
         Memory save =new Memory(getDefaultSharedPreferences(getApplicationContext()));
         ArrayList<String> weight;                                                                       //luodaan arraylist weight johon tallennetaan paino
         weight = new ArrayList<String>();
