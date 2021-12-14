@@ -27,13 +27,12 @@ public class Food extends AppCompatActivity {
     private int foodCalories = 0;                                                                       //muuttuja syödyille kaloreille
 
     @Override
+    /**
+     * Hakee muistista päivittäisen kalorimäärän ja tavoitemäärän
+     * Asettaa arvot näkymään ja edistymispalkkiin
+     */
     protected void onCreate(Bundle savedInstanceState) {
-        /**
-         * Hakee kalorimäärän muistista ja asettaa sen textViewiin
-         * Hakee kaloritavoitteen muistista ja asettaa sen textViewiin
-         * Asettaa päivittäisen kaloritavoitteen edistymispalkin maksimiarvoksi
-         * Asettaa edistymispalkin arvon nykyiseen kalorimäärään
-         */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -50,15 +49,13 @@ public class Food extends AppCompatActivity {
         progressBar.setProgress(foodCalories);                                                          //Asetetaan editysmispalkin edityminen päivän aikana syötyihin kaloreihin
     }
 
-
+    /**
+     * Reagoidaan "lisää" napin painallukseen
+     * tallennetaan käyttäjän lisäämä kalorimäärä muistiin
+     * päivitetään activityn näkymä
+     */
     public void updateFoodCalories(View view) {                                                          //Kutsutaan "Lisää" nappulaa painettaessa
-        /**
-         * Kutsutaan Food.java "Lisää" nappia painettaessa
-         * Lisää käyttäjän syöttämät kalorit edellisiin kaloreihin
-         * Päivittää kaloreiden määrän textViewiin
-         * Tallentaa nykyisen kalorimäärän muistiin
-         * Päivittää edistysmispalkin
-         */
+
         Memory save =new Memory(getDefaultSharedPreferences(getApplicationContext()));
         EditText editText = findViewById(R.id.editTxFoodCalories);
         String temp = editText.getText().toString();                                                    //haetaan ui elementti idellä ja tallennetaan muuttujaan

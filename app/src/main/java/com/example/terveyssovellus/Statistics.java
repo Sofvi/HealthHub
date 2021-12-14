@@ -69,12 +69,12 @@ public class Statistics extends AppCompatActivity {
 
 
     }
-
+    /**
+     * Hakee muisista päivän aikana poltetut kalorit ja lisää ne yhteen
+     * Päivittää päivän aikana yhteensä poltetut kalorit Activityyn
+     */
     private void updateBurnedCalories(){
-        /**
-         * Hakee muisista päivän aikana poltetut kalorit ja lisää ne yhteen
-         * Päivittää päivän aikana yhteensä poltetut kalorit textViewiin
-         */
+
         //määritetään paikka muistissa jossa haetaan tiedot
         SharedPreferences prefs3 = getDefaultSharedPreferences(getApplicationContext());
         Gson gson = new Gson();
@@ -120,13 +120,12 @@ public class Statistics extends AppCompatActivity {
         }
     }
 
+    /**
+     * Hakee muistista tallennetut painot
+     * Muotoilee kuvaajan
+     * Luo tallennetuista painoista kuvaajan ja päivittää sen Activityyn
+     */
     private void updateWeightChart() {
-        /**
-         * Hakee muistista tallennetut painot
-         * Muotoilee kuvaajan
-         * Luo tallennetuista painoista kuvaajan
-         */
-
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
 
@@ -183,12 +182,12 @@ Kasataan kuvaaja ja asetetaan se näkymään.
 
     }
 
+    /**
+     * Ottaa viimeisimmäksi tallennetun painon ja pituuden
+     * Laskee painoindeksin ja asettaa sen näkyviin
+     */
     private void updateBMI() {
-        /**
-         * Ottaa viimeisimmäksi tallennetun painon
-         * Hakee tallennetun pituuden
-         * laskee painoindeksin paino(kg)/pituus(m)/pituus(m) kaavalla
-         */
+
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
         String paino = prefs.getString("paino",                                                     //Haetaan tallennettujen painojen string
                 "0");
@@ -208,12 +207,13 @@ Kasataan kuvaaja ja asetetaan se näkymään.
         textView.setText("Painoindeksi: " + bmi2);                                                      //Asetetaan BMI textViewiin
     }
 
+    /**
+     * Hakee muisista syödyt kalorit
+     * Muotoilee kuvaajan
+     * Luo tallennetuista kaloreista kuvaajan
+     */
     private void updateFoodChart() {
-        /**
-         * Hakee muisista syödyt kalorit
-         * Muotoilee kuvaajan
-         * Luo tallennetuista kaloreista kuvaajan
-         */
+
         BarChart chart = (BarChart) findViewById(R.id.severityBarChart);
 
         List<BarEntry> entries = new ArrayList<BarEntry>();
@@ -259,6 +259,10 @@ Asetetaan X akselille päivämäärä viimeiselle arvolle
 https://stackoverflow.com/questions/45320457/how-to-set-string-value-of-xaxis-in-mpandroidchart
 Arjun G reply
  */
+
+    /**
+     * Asettaa kuvaajien X-akselille arvot
+     */
     public class DayAxisValueFormatter extends ValueFormatter {
 
         Calendar calendar = Calendar.getInstance();
