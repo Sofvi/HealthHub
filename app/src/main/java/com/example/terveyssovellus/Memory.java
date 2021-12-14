@@ -40,6 +40,9 @@ import java.util.Calendar;
             if(s1.contains(" ")) {
                 s1 = s1.replace(" ", "");
             }
+            if(s1.contains("-")) {
+                s1 = s1.replace("-", "");
+            }
             return s1;
         }
         public String verifyCal(String s){
