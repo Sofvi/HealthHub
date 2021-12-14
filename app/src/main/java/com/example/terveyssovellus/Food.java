@@ -40,21 +40,16 @@ public class Food extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-        foodCalories = prefs.getInt(currentDateKey,                                                     //Asetetaan kalorit muistista, jossa käytetään päivämäärää Keynä
-                0);
+        Fetch fetch =new Fetch(getDefaultSharedPreferences(getApplicationContext()));
+        foodCalories=fetch.fetchDailyCalories();
         TextView textView = findViewById(R.id.total_food_calories);
         textView.setText(String.valueOf(foodCalories));                                                 //Asetetaan päivän aikana jo syödyt kalorit textViewiin
 
-        SharedPreferences prefs2 = getDefaultSharedPreferences(getApplicationContext());
-        int goal_calories = prefs2.getInt("user_food_goal",                                         //Haetaan muisista päiväkohtainen kaloritavoite, joka asetetaan UserSettingseissä, user_food_goal Keylle.
-                0);
         TextView textView2 = findViewById(R.id.food_calories_goal);
-        textView2.setText(String.valueOf(goal_calories));                                               //Asetetaan päivittäinen kaloritavoite textViewiin
+        textView2.setText(String.valueOf(fetch.fetchCalories_goal()));                                               //Asetetaan päivittäinen kaloritavoite textViewiin
 
         ProgressBar progressBar = findViewById(R.id.food_progressBar);
-        progressBar.setMax(goal_calories);                                                              //Asetetaan editysmispalkin maksimiarvoksi päivittäinen kaloritavoite
+        progressBar.setMax(fetch.fetchCalories_goal());                                                              //Asetetaan editysmispalkin maksimiarvoksi päivittäinen kaloritavoite
         progressBar.setProgress(foodCalories);                                                          //Asetetaan editysmispalkin edityminen päivän aikana syötyihin kaloreihin
     }
 
@@ -67,7 +62,7 @@ public class Food extends AppCompatActivity {
          * Tallentaa nykyisen kalorimäärän muistiin
          * Päivittää edistysmispalkin
          */
-
+        Memory save =new Memory(getDefaultSharedPreferences(getApplicationContext()));
         EditText editText = findViewById(R.id.editTxFoodCalories);
         String temp = editText.getText().toString();                                                    //haetaan ui elementti idellä ja tallennetaan muuttujaan
         if (temp.contains(",") || (temp.contains("."))) {                                               //tarkastetaan käyttäjän syöte
@@ -83,11 +78,7 @@ public class Food extends AppCompatActivity {
             textView.setText(String.valueOf(foodCalories));                                                 //Päivitetään syödyt kalorit textViewiin
             Toast.makeText(getApplicationContext(), n + " Kaloria lisätty.", Toast.LENGTH_SHORT).show(); //Annetaan toast, käyttäjä saa ilmoituksen lisäyksestä
             editText.getText().clear();                                                                     //tyhjennetään editText kenttä
-
-            SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt(currentDateKey, foodCalories);                                                    //Tallennetaan kalorit muistiin, Keynä käytetään päivämäärää
-            editor.commit();
+            save.saveCal(String.valueOf(foodCalories));
 
             ProgressBar progressBar = findViewById(R.id.food_progressBar);
             progressBar.setProgress(foodCalories);                                                          //Päivitetään progressbar
