@@ -52,10 +52,11 @@ public class Fetch {
         int calories_goal = prefs.getInt("user_food_goal", 0);
         return calories_goal;
     }
+
+    /** poistetaan Stringistä erikoismerkit
+     * parsetaan Stringi
+     * */
     public String fetchExercise(){
-        /** poistetaan Stringistä erikoismerkit
-         * parsetaan Stringi
-         * */
         if(prefs.getString("e" + date(), null)!=null) {
             String jsonText = prefs.getString("e" + date(), null);
             String yett = jsonText.replace("\\", "");                                    //poistetaan stringistä erikoismerkkit ja parsetaan stringi
