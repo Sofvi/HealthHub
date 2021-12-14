@@ -39,6 +39,7 @@ public class Weight extends AppCompatActivity {
     ArrayList<String> weight;
     ArrayAdapter<String> arrayadapter;
 
+    /**luodaan arraylist ja adapteri jolla saadaan arraylistin sisältö listanäkymään*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class Weight extends AppCompatActivity {
         lv = findViewById(R.id.weightListview);
         Fetch fetch =new Fetch(getDefaultSharedPreferences(getApplicationContext()));
         SharedPreferences prefs = getDefaultSharedPreferences(getApplicationContext());
-        /**luodaan arraylist ja adapteri jolla saadaan arraylistin sisältö listanäkymään*/
+
         weight = new ArrayList<String>();
         arrayadapter = new ArrayAdapter<String>(
                 Weight.this,
@@ -57,11 +58,11 @@ public class Weight extends AppCompatActivity {
                 weight);
         lv.setAdapter(arrayadapter);
 
+        /**
+         * Tallennetaan parsetut osat
+         * Loop jossa käydään läpi array johon tieto on tallennettu ja tallennetaan se arraylistin
+         * */
         if (prefs.getString("paino", null) != null) {                                       //ehtolause jolla tarkastetaan että muistissa on tallennettu tietoa
-            /**
-             * Tallennetaan parsetut osat
-             * Loop jossa käydään läpi array johon tieto on tallennettu ja tallennetaan se arraylistin
-             * */
             String[] parsed = fetch.fetchWeightList().split(",");
             for (int i = 0; i < parsed.length; i++) {
                 weight.add(parsed[i]);
