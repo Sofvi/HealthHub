@@ -18,6 +18,7 @@ public class Fetch {
     }
     /** Hakee muistista painon arraylist muotoon
      * parsetaan Stringistä erikoismerkit
+     * @return palauttaa muistista haetun tiedon ilman erikoismerkkejä
      * */
     public String fetchWeightList(){
 
@@ -32,6 +33,7 @@ public class Fetch {
     }
     /** Hakee muistista uusimman painon
      * muistista haettu Stringi pilkotaan pelkiksi painon numeroiksi
+     * @return palutaa uusimman painon double muodossa
      * */
     public double fetchWeight(){
 
@@ -44,17 +46,27 @@ public class Fetch {
         weight = Double.parseDouble(paino);
         return weight;
     }
+
+    /**
+     * hakee pituuden muistista
+     * @return palauttaa muistiin tallennetun pituuden float muodossa
+     */
     public float fetchHeight(){
         float user_height = this.prefs.getFloat("user_height", 0);
         return user_height;
     }
+
+    /**
+     * hakee kaloritavoitteen muistista
+     * @return palauttaa kaloritavoitteen integer muodossa
+     */
     public int fetchCalories_goal(){
         int calories_goal = prefs.getInt("user_food_goal", 0);
         return calories_goal;
     }
 
-    /** poistetaan Stringistä erikoismerkit
-     * parsetaan Stringi
+    /** hakee liikuntasuoritukset muistista ja pilkkoo erikoismerkit pois
+     * @return palauttaa liikunta suoritukset eriteltynä pilkulla stringinä
      * */
     public String fetchExercise(){
         if(prefs.getString("e" + date(), null)!=null) {
@@ -67,10 +79,20 @@ public class Fetch {
         }
         return null;
     }
+
+    /**
+     * hakee muistista syödyt kalorit nykyisellä päivämäärällä
+     * @return palauttaa kalorit integer muodossa
+     */
     public int fetchDailyCalories(){
         int foodCalories = prefs.getInt(date(),0);
         return foodCalories;
     }
+
+    /**
+     * Luokan sisäinen metodi palauttaa päivämäärä
+     * @return palauttaa päivämäärän muodossa pp.kk.vvvv
+     */
     private String date(){
         Calendar calendar = Calendar.getInstance();                                                         //Haetaan päivä ja aika
         String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());
