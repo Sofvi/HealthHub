@@ -16,10 +16,11 @@ public class Fetch {
     public Fetch(SharedPreferences pref){
         this.prefs=pref;
     }
+    /** Hakee muistista painon arraylist muotoon
+     * parsetaan Stringistä erikoismerkit
+     * */
     public String fetchWeightList(){
-        /** tarkistetaan, että muistissa on tallennettua tietoa
-         * parsetaan Stringistä erikoismerkit
-         * */
+
         String jsonText = this.prefs.getString("paino", null);
         if (prefs.getString("paino", null) != null) {                                       //ehtolause jolla tarkastetaan että muistissa on tallennettu tietoa
             String yett = jsonText.replace("\\", "");                                   //parsetaan stringistä pois kaikki erikoismerkit
@@ -29,10 +30,11 @@ public class Fetch {
         }
         return jsonText;
     }
+    /** Hakee muistista uusimman painon
+     * muistista haettu Stringi pilkotaan pelkiksi painon numeroiksi
+     * */
     public double fetchWeight(){
-/** haettu data asetetaan muuttujaan käsittelyä varten
- * muistista haettu Stringi pilkotaan pelkiksi painon numeroiksi
- * */
+
         double weight = 0;
         String paino = this.prefs.getString("paino", "0");
         String s1 = paino.substring(paino.indexOf(":") + 1);                                          //pilkotaan muistista haetusta Stringistä pelkkä paino numerona

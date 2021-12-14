@@ -25,9 +25,6 @@ import java.util.Calendar;
 public class Food extends AppCompatActivity {
 
     private int foodCalories = 0;                                                                       //muuttuja syödyille kaloreille
-    Calendar calendar = Calendar.getInstance();                                                         //Haetaan päivä+aika
-    String currentDateKey = DateFormat.getDateInstance().format(calendar.getTime());                    //Asetetaan currentDateKey muotoon pp.kk.vvvv, käytetään Keynä sharedPreferensseissä
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
